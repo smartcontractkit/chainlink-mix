@@ -1,0 +1,16 @@
+# exclude SafeMath when calculating test coverage
+# https://eth-brownie.readthedocs.io/en/v1.10.3/config.html#exclude_paths
+reports:
+  exclude_contracts:
+    - SafeMath
+compiler:
+  solc:
+    remappings:
+      - '@chainlink-contracts=alphachainio/chainlink-contracts@1.0.0'
+# set a custom mnemonic for the development network
+networks:
+  default: kovan
+  kovan:
+    cmd_settings:
+      mnemonic: ${MNEMONIC}
+    host: ${KOVAN_RPC_URL}

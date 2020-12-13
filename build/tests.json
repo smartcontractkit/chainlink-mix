@@ -1,0 +1,15 @@
+{
+  "contracts": {
+    "PriceFeed": "0dfcfca242489dfd236ae92cd20976221bc75e7a"
+  },
+  "tests": {
+    "tests/test_price_feed.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": "F",
+      "sha1": "d44dbdd689a7ca401eef62381ca36405ab74ac27",
+      "txhash": []
+    }
+  },
+  "tx": {}
+}
