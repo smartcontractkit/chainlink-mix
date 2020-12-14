@@ -1,13 +1,35 @@
 {
   "contracts": {
-    "PriceFeed": "0dfcfca242489dfd236ae92cd20976221bc75e7a"
+    "APIConsumer": "e0d10735505a008e83a98587044e521efb4c3aef",
+    "PriceFeed": "097c6bd07620966d0b130e245bf47a3c430dec7a",
+    "VRFConsumer": "381da532cf629be9dd09a19881491f8ddf045863",
+    "alphachainio/chainlink-contracts@1.1.0/BufferChainlink": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "alphachainio/chainlink-contracts@1.1.0/CBORChainlink": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "alphachainio/chainlink-contracts@1.1.0/Chainlink": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "alphachainio/chainlink-contracts@1.1.0/ChainlinkClient": "750a107dfd09b0702b5ae03a4b6ea3c8b73190e1",
+    "alphachainio/chainlink-contracts@1.1.0/SafeMath": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "alphachainio/chainlink-contracts@1.1.0/VRFRequestIDBase": "73df0a6f5d0123eb2b2db0faf62b602aa77c123a"
   },
   "tests": {
-    "tests/test_price_feed.py": {
+    "tests/mainnet-fork/test_mainnet_fork_price_feed.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": "ss",
+      "sha1": "cbd8253c71bb070e447f9b141ccfa364e280099e",
+      "txhash": []
+    },
+    "tests/staging/test_kovan_api.py": {
       "coverage": false,
       "isolated": false,
       "results": "F",
-      "sha1": "d44dbdd689a7ca401eef62381ca36405ab74ac27",
+      "sha1": "7a8c750de2735a5bce259d1a82758d1a0d85a38e",
+      "txhash": []
+    },
+    "tests/staging/test_kovan_vrf.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": ".",
+      "sha1": "c5106529961c168f0890512592e5ad02d5161709",
       "txhash": []
     }
   },
