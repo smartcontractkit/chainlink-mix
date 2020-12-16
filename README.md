@@ -1,6 +1,6 @@
 # chainlink-mix
 
-This is a repo to work with and use Chainlink smart contracts in a python environment. If you're brand new to Chainlink, check out the beginer walkthroughs in remix to [learn the basics.](https://docs.chain.link/docs/beginners-tutorial)
+This is a repo to work with and use Chainlink smart contracts in a python environment. If you're brand new to Chainlink, check out the beginner walkthroughs in remix to [learn the basics.](https://docs.chain.link/docs/beginners-tutorial)
 
 You can also check out the more advanced Chainlink tutorials there as well. 
 
