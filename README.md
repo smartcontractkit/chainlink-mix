@@ -28,7 +28,7 @@ brownie bake chainlink-mix
 cd chainlink-mix
 ```
 
-3. Set your `WEB3_INFURA_PROJECT_ID`. You can get this by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura. 
+3. Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get this by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
 
 ## Chainlink Price Feeds
 
