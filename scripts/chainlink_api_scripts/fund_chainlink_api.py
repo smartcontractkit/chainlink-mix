@@ -4,7 +4,7 @@ from brownie import APIConsumer, accounts, network, interface, config
 
 
 def main():
-    dev = accounts.add(os.getenv('PRIVATE_KEY'))
+    dev = accounts.add(os.getenv(config['wallets']['from_key']))
     # Get the most recent PriceFeed Object
     api_contract = APIConsumer[len(APIConsumer) - 1]
     interface.LinkTokenInterface(config['networks'][network.show_active()]['link_token']).transfer(
