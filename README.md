@@ -23,23 +23,25 @@ You can also check out the more advanced Chainlink tutorials there as well.
 pip install eth-brownie
 ```
 
-2. Download the mix. #TODO
-
-Until the mix is uploaded, you can just do the following:
-
-```bash
-git clone https://github.com/PatrickAlphaC/chainlink-mix
-cd chainlink-mix 
-```
-
-Once it becomes a mix, it will look like: 
+2. Download the mix. 
 
 ```bash
 brownie bake chainlink-mix
 cd chainlink-mix
 ```
 
-3. Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get this by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
+This will open up a new Chainlink project. Or, you can clone from source:
+
+```bash
+git clone https://github.com/PatrickAlphaC/chainlink-mix
+cd chainlink-mix 
+```
+
+If you want to be able to deploy to testnets, do the following. 
+
+1. Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get this by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
+
+Otherwise, you can build, test, and deploy on your local environment. 
 
 ## Chainlink Price Feeds
 
@@ -87,35 +89,28 @@ brownie run scripts/price_feed_scripts/read_api.py --network kovan
 
 ## Testing
 
-To run basic tests from `mainnet-fork` network
-
 ```
 brownie test
 ```
 
-There are 3 types of tests you can run:
+For more information on effective testing with Chainlink, check out [Testing Smart Contracts](https://blog.chain.link/testing-chainlink-smart-contracts/)
 
-1. Development tests
-   1. These test using a local ganache chain. They are unit tests and do not interact with Chainlink nodes.
-   2. Right now this is blank
-2. Mainnet-fork tests
-   1. These run on a mainnet forked local ganache chain. They are used to interact with pricefeed contracts deployed to mainnet. 
-3. Testnet/Staging tests
-   1. These are the pre-production tests. They are used to test a specific testnet. 
-   2. Right now we have them hard coded to kovan. 
+Tests are really robust here! They work for local development and testnets. There are a few key differences between the testnets and the local networks. We utilize mocks so we can work with fake oracles on our testnets. 
+
+There is a `test_unnecessary` folder, which is a good exersize for learning some of the nitty-gritty of smart contract development. It's overkill, so pytest will skip them intentionally. It also has a `test_samples` folder, which shows an example Chainlink API call transaction receipt. 
 
 
-### To test development (Currently blank)
+### To test development / local
 ```bash
-brownie test --network development
+brownie test
 ```
 ### To test mainnet-fork
-This will test Chainlink API Calls and Chainlink VRF
+This will test the same way as local testing, but you will need a connection to a mainnet blockchain (like with the infura environment variable.)
 ```bash
 brownie test --network mainnet-fork
 ```
-### To test staging/testnet
-This will test Chainlink Price Feeds
+### To test a testnet
+Kovan and Rinkeby are currently supported
 ```bash
 brownie test --network kovan
 ```

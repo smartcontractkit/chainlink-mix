@@ -16,8 +16,12 @@ contract APIConsumer is ChainlinkClient {
      * Job ID: 29fa9aa13bf1468788b7cc4a500a45b8
      * Fee: 0.1 LINK
      */
-    constructor(address _oracle, string memory _jobId, uint256 _fee) public {
-        setPublicChainlinkToken();
+    constructor(address _oracle, string memory _jobId, uint256 _fee, address _link) public {
+        if (_link == address(0)) {
+            setPublicChainlinkToken();
+        } else {
+            setChainlinkToken(_link);
+        }
         // oracle = 0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e;
         // jobId = "29fa9aa13bf1468788b7cc4a500a45b8";
         // fee = 0.1 * 10 ** 18; // 0.1 LINK
