@@ -30,8 +30,17 @@ networks:
     oracle: '0x7AFe1118Ea78C1eae84ca8feE5C65Bc76CcF879e'
     jobId: '6d1bfe27e7034b1d87b5270556b17277'
     eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+  mumbai:
+    eth_usd_price_feed: '0x0715A7794a1dc8e42615F059dD6e406A6594651A'
+  binance:
+    # link_token: ??
+    eth_usd_price_feed: '0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e'
+  binance-fork:
+    eth_usd_price_feed: '0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e'
   mainnet-fork:
     eth_usd_price_feed: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
+  matic-fork:
+    eth_usd_price_feed: '0xF9680D99D6C9589e2a93a78A04A279e509205945'
 wallets:
   from_key: PRIVATE_KEY
   # could also do from_mnemonic, and you'd have to change the accounts.add to accounts.from_mnemonic

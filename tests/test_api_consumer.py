@@ -18,8 +18,9 @@ def deploy_api_contract(get_account, get_oracle, get_job_id, chainlink_fee, get_
 
 def test_send_api_request_local(deploy_api_contract, get_account, get_link_token,
                                 chainlink_fee, get_oracle, get_data):
+
     # Arrange
-    if network.show_active() not in ['development', 'mainnet-fork']:
+    if network.show_active() not in ['development'] or 'fork' in network.show_active():
         pytest.skip('Only for local testing')
     api_contract = deploy_api_contract
     get_link_token.transfer(api_contract.address,

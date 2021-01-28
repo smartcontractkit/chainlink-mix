@@ -115,6 +115,19 @@ Kovan and Rinkeby are currently supported
 brownie test --network kovan
 ```
 
+## Adding additional Chains
+
+If the blockchain is EVM Compatible, adding new chains can be accomplished by something like:
+
+```
+brownie networks add Ethereum binance-smart-chain host=https://bsc-dataseed1.binance.org chainid=56
+```
+or, for a fork: 
+
+```
+brownie networks add development binance-fork cmd=ganache-cli host=http://127.0.0.1 fork=https://bsc-dataseed1.binance.org accounts=10 mnemonic=brownie port=8545
+```
+
 ## Resources
 
 To get started with Brownie:

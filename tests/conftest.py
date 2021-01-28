@@ -30,7 +30,7 @@ def get_account():
 
 @pytest.fixture(scope="module")
 def get_link_token(get_account):
-    if network.show_active() in ['development', 'mainnet-fork']:
+    if network.show_active() == 'development' or 'fork' in network.show_active():
         link_token = LinkToken.deploy({'from': get_account})
         return link_token
     if network.show_active() in config['networks']:
@@ -42,7 +42,7 @@ def get_link_token(get_account):
 
 @pytest.fixture
 def get_vrf_coordinator(get_account, get_link_token):
-    if network.show_active() == 'development' or network.show_active() == 'mainnet-fork':
+    if network.show_active() == 'development' or 'fork' in network.show_active():
         mock_vrf_coordinator = VRFCoordinatorMock.deploy(
             get_link_token.address, {'from': get_account})
         return mock_vrf_coordinator
@@ -56,7 +56,7 @@ def get_vrf_coordinator(get_account, get_link_token):
 
 @pytest.fixture
 def get_keyhash(get_account, get_link_token):
-    if network.show_active() in ['development', 'mainnet-fork']:
+    if network.show_active() == 'development' or 'fork' in network.show_active():
         return 0
     if network.show_active() in config['networks']:
         return config['networks'][network.show_active()]['keyhash']
@@ -66,7 +66,7 @@ def get_keyhash(get_account, get_link_token):
 
 @pytest.fixture
 def get_job_id():
-    if network.show_active() in ['development', 'mainnet-fork']:
+    if network.show_active() == 'development' or 'fork' in network.show_active():
         return 0
     if network.show_active() in config['networks']:
         return config['networks'][network.show_active()]['jobId']
@@ -86,7 +86,7 @@ def get_data():
 
 @pytest.fixture
 def get_oracle(get_link_token, get_account):
-    if network.show_active() == 'development' or network.show_active() == 'mainnet-fork':
+    if network.show_active() == 'development' or 'fork' in network.show_active():
         mock_oracle = MockOracle.deploy(
             get_link_token.address, {'from': get_account})
         return mock_oracle

@@ -19,7 +19,7 @@ def test_can_request_random_number(get_account, get_vrf_coordinator, get_keyhash
 def test_returns_random_number_local(get_account, get_vrf_coordinator, get_keyhash,
                                      get_link_token, chainlink_fee, get_seed):
     # Arrange
-    if network.show_active() not in ['development', 'mainnet-fork']:
+    if network.show_active() not in ['development'] or 'fork' in network.show_active():
         pytest.skip('Only for local testing')
     vrf_consumer = VRFConsumer.deploy(
         get_keyhash, get_vrf_coordinator.address, get_link_token.address, {'from': get_account})
