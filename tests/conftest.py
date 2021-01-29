@@ -35,7 +35,7 @@ def get_link_token(get_account):
         return link_token
     if network.show_active() in config['networks']:
         return Contract.from_abi(
-            "vrf_coordinator_mock", config['networks'][network.show_active()]['link_token'], LinkToken.abi)
+            "link_token", config['networks'][network.show_active()]['link_token'], LinkToken.abi)
     else:
         pytest.skip('Invalid network/link token specified ')
 
