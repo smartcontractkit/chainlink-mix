@@ -15,6 +15,12 @@ This is a repo to work with and use Chainlink smart contracts in a python enviro
 
 You can also check out the more advanced Chainlink tutorials there as well. 
 
+## Prerequisites
+
+Please install or have installed the following:
+
+- [nodejs and npm](https://nodejs.org/en/download/)
+- [python](https://www.python.org/downloads/)
 ## Installation
 
 1. [Install Brownie](https://eth-brownie.readthedocs.io/en/stable/install.html), if you haven't already. Here is a simple way to install brownie.
@@ -23,7 +29,13 @@ You can also check out the more advanced Chainlink tutorials there as well.
 pip install eth-brownie
 ```
 
-2. Download the mix. 
+2. [Install ganache-cli](https://www.npmjs.com/package/ganache-cli)
+
+```bash
+npm install -g ganache-cli
+```
+
+3. Download the mix. 
 
 ```bash
 brownie bake chainlink-mix
