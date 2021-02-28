@@ -82,10 +82,10 @@ brownie console --network mainnet-fork
 
 This will deploy a smart contract to kovan and get a Random number via [Chainlink VRF](https://docs.chain.link/docs/get-a-random-number). 
 ```
-brownie run scripts/price_feed_scripts/deploy_vrf.py --network kovan
-brownie run scripts/price_feed_scripts/fund_vrf.py --network kovan
-brownie run scripts/price_feed_scripts/request_randomness.py --network kovan
-brownie run scripts/price_feed_scripts/read_random_number.py --network kovan
+brownie run scripts/vrf_scripts/deploy_vrf.py --network kovan
+brownie run scripts/vrf_scripts/fund_vrf.py --network kovan
+brownie run scripts/vrf_scripts/request_randomness.py --network kovan
+brownie run scripts/vrf_scripts/read_random_number.py --network kovan
 ```
 
 ## Chainlink API Call
@@ -93,10 +93,10 @@ brownie run scripts/price_feed_scripts/read_random_number.py --network kovan
 
 This will deploy a smart contract to kovan and then make an API call via [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request). 
 ```
-brownie run scripts/price_feed_scripts/deploy_api_consumer.py --network kovan
-brownie run scripts/price_feed_scripts/fund_chainlink_api.py --network kovan
-brownie run scripts/price_feed_scripts/request_api.py --network kovan
-brownie run scripts/price_feed_scripts/read_api.py --network kovan
+brownie run scripts/chainlink_api_scripts/deploy_api_consumer.py --network kovan
+brownie run scripts/chainlink_api_scripts/fund_chainlink_api.py --network kovan
+brownie run scripts/chainlink_api_scripts/request_api.py --network kovan
+brownie run scripts/chainlink_api_scripts/read_api.py --network kovan
 ```
 
 ## Testing
