@@ -35,11 +35,12 @@ pip install eth-brownie
 npm install -g ganache-cli
 ```
 
-3. Download the mix. 
+3. Download the mix and install dependancies. 
 
 ```bash
 brownie bake chainlink-mix
 cd chainlink-mix
+pip install -r requirements.txt
 ```
 
 This will open up a new Chainlink project. Or, you can clone from source:
@@ -51,7 +52,22 @@ cd chainlink-mix
 
 If you want to be able to deploy to testnets, do the following. 
 
-1. Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get this by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
+1. Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). 
+
+You can get a `WEB3_INFURA_PROJECT_ID` by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura with brownie. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
+
+You'll also need testnet rinkeby ETH and LINK. You can get LINK and ETH into your wallet by using the [rinkeby faucets located here](https://docs.chain.link/docs/link-token-contracts#rinkeby). If you're new to this, [watch this video.](https://www.youtube.com/watch?v=P7FX_1PePX0)
+
+You can add your environment variables to the `.env` file:
+
+```
+export WEB3_INFURA_PROJECT_ID=<PROJECT_ID>
+export PRIVATE_KEY=<PRIVATE_KEY>
+```
+
+AND THEN RUN `source .env` TO ACTIVATE THE ENV VARIABLES
+(You'll need to do this everytime you open a new terminal, or [learn how to set them easier](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html))
+
 
 Otherwise, you can build, test, and deploy on your local environment. 
 
@@ -77,6 +93,8 @@ brownie console --network mainnet-fork
 >>> latest_price
 59169208540
 ```
+
+You can also use [ENS](https://docs.chain.link/docs/ens) to get prices. See the [ens price feed script](./scripts/price_feed_scripts/read_price_with_ens.py) for more information. 
 
 ## Chainlink VRF
 
@@ -138,6 +156,15 @@ or, for a fork:
 
 ```
 brownie networks add development binance-fork cmd=ganache-cli host=http://127.0.0.1 fork=https://bsc-dataseed1.binance.org accounts=10 mnemonic=brownie port=8545
+```
+
+## Linting
+
+```
+pip install black 
+pip install autoflake
+autoflake --in-place --remove-unused-variables -r .
+black .
 ```
 
 ## Resources

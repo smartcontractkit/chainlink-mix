@@ -4,13 +4,18 @@ reports:
   exclude_contracts:
     - SafeMath
 dependencies:
-  - alphachainio/chainlink-contracts@1.1.2
+  - smartcontractkit/chainlink-brownie-contracts@1.0.2
+  - OpenZeppelin/openzeppelin-contracts@3.4.0
 compiler:
   solc:
     remappings:
-      - '@chainlink=alphachainio/chainlink-contracts@1.1.2'
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.0.2'
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.4.0'
 # automatically fetch contract sources from Etherscan
 autofetch_sources: True
+dotenv: .env
+# Change to trye to verify smart contracts
+verify: False
 # set a custom mnemonic for the development network
 networks:
   default: development
@@ -42,5 +47,7 @@ networks:
   matic-fork:
     eth_usd_price_feed: '0xF9680D99D6C9589e2a93a78A04A279e509205945'
 wallets:
-  from_key: PRIVATE_KEY
+  from_key: ${PRIVATE_KEY}
+  from_mnemonic: ${MNEMONIC}
+
   # could also do from_mnemonic, and you'd have to change the accounts.add to accounts.from_mnemonic
