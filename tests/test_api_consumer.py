@@ -60,6 +60,6 @@ def test_send_api_request_testnet(
     requestId = api_contract.requestVolumeData({"from": get_account})
     # Assert
     assert requestId is not None
-    time.sleep(20)
+    time.sleep(45)
     assert isinstance(api_contract.volume(), int)
     assert api_contract.volume() > 0

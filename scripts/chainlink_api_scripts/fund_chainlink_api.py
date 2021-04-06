@@ -8,10 +8,5 @@ def main():
     api_contract = APIConsumer[len(APIConsumer) - 1]
     interface.LinkTokenInterface(
         config["networks"][network.show_active()]["link_token"]
-    ).transfer(
-        api_contract,
-        1000000000000000000,
-        {"from": dev},
-        publish_source=config["verify"],
-    )
+    ).transfer(api_contract, 1000000000000000000, {"from": dev})
     print("Funded {}".format(api_contract.address))

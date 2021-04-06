@@ -1,6 +1,6 @@
 import brownie
 import pytest
-from brownie import APIConsumer, LinkToken, Oracle
+from brownie import APIConsumer, LinkToken, MockOracle
 
 
 @pytest.mark.skip(reason="overkill testing")
@@ -9,9 +9,10 @@ def test_chainlink_api_call_without_link(
 ):
     # Arrange
     link_token = LinkToken.deploy({"from": dev_account})
-    oracle = Oracle.deploy(link_token.address, {"from": dev_account})
+    oracle = MockOracle.deploy(link_token.address, {"from": dev_account})
     api_consumer = APIConsumer.deploy(
-        oracle.address, job_id, chainlink_fee, link_token.address, {"from": dev_account}
+        oracle.address, job_id, chainlink_fee, link_token.address, {
+            "from": dev_account}
     )
     oracle.setFulfillmentPermission(node_account, True, {"from": dev_account})
     # Act / Assert
@@ -23,12 +24,14 @@ def test_chainlink_api_call_without_link(
 def test_chainlink_api_call_with_link(job_id, dev_account, node_account, chainlink_fee):
     # Arrange
     link_token = LinkToken.deploy({"from": dev_account})
-    oracle = Oracle.deploy(link_token.address, {"from": dev_account})
+    oracle = MockOracle.deploy(link_token.address, {"from": dev_account})
     api_consumer = APIConsumer.deploy(
-        oracle.address, job_id, chainlink_fee, link_token.address, {"from": dev_account}
+        oracle.address, job_id, chainlink_fee, link_token.address, {
+            "from": dev_account}
     )
     oracle.setFulfillmentPermission(node_account, True, {"from": dev_account})
-    link_token.transfer(api_consumer.address, chainlink_fee, {"from": dev_account})
+    link_token.transfer(api_consumer.address,
+                        chainlink_fee, {"from": dev_account})
     # Act
     transaction_data = api_consumer.requestVolumeData({"from": dev_account})
     # Assert
@@ -43,7 +46,7 @@ def test_chainlink_api_call_with_link_fulfilled(
 ):
     # Arrange
     link_token = LinkToken.deploy({"from": dev_account})
-    oracle = Oracle.deploy(link_token.address, {"from": dev_account})
+    oracle = MockOracle.deploy(link_token.address, {"from": dev_account})
     api_consumer = APIConsumer.deploy(
         oracle.address,
         "29fa9aa13bf1468788b7cc4a500a45b8",
@@ -52,7 +55,8 @@ def test_chainlink_api_call_with_link_fulfilled(
         {"from": dev_account},
     )
     oracle.setFulfillmentPermission(node_account, True, {"from": dev_account})
-    link_token.transfer(api_consumer.address, chainlink_fee * 3, {"from": dev_account})
+    link_token.transfer(api_consumer.address,
+                        chainlink_fee * 3, {"from": dev_account})
 
     transaction_receipt = api_consumer.requestVolumeData({"from": dev_account})
     reqid = transaction_receipt.events["ChainlinkRequested"]["id"]

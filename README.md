@@ -114,7 +114,7 @@ This will deploy a smart contract to kovan and then make an API call via [Chainl
 brownie run scripts/chainlink_api_scripts/deploy_api_consumer.py --network kovan
 brownie run scripts/chainlink_api_scripts/fund_chainlink_api.py --network kovan
 brownie run scripts/chainlink_api_scripts/request_api.py --network kovan
-brownie run scripts/chainlink_api_scripts/read_api.py --network kovan
+brownie run scripts/chainlink_api_scripts/read_data.py --network kovan
 ```
 
 ## Testing

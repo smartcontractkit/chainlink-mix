@@ -8,9 +8,4 @@ def main():
     vrf_contract = VRFConsumer[len(VRFConsumer) - 1]
     interface.LinkTokenInterface(
         config["networks"][network.show_active()]["link_token"]
-    ).transfer(
-        vrf_contract,
-        1000000000000000000,
-        {"from": dev},
-        publish_source=config["verify"],
-    )
+    ).transfer(vrf_contract, 1000000000000000000, {"from": dev})

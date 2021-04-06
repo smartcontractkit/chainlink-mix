@@ -6,4 +6,4 @@ def main():
     dev = accounts.add(config["wallets"]["from_key"])
     # Get the most recent PriceFeed Object
     api_contract = APIConsumer[len(APIConsumer) - 1]
-    api_contract.requestVolumeData({"from": dev}, publish_source=config["verify"])
+    api_contract.requestVolumeData({"from": dev})

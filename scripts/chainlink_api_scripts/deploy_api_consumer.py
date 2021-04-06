@@ -8,6 +8,7 @@ def main():
         config["networks"][network.show_active()]["oracle"],
         config["networks"][network.show_active()]["jobId"],
         config["networks"][network.show_active()]["fee"],
+        config["networks"][network.show_active()]["link_token"],
         {"from": dev},
         publish_source=config["verify"],
     )
