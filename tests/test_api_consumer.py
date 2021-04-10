@@ -57,9 +57,9 @@ def test_send_api_request_testnet(
         api_contract.address, chainlink_fee * 2, {"from": get_account}
     )
     # Act
-    requestId = api_contract.requestVolumeData({"from": get_account})
+    transaction = api_contract.requestVolumeData({"from": get_account})
     # Assert
-    assert requestId is not None
-    time.sleep(45)
+    assert transaction is not None
+    transaction.wait(2)
     assert isinstance(api_contract.volume(), int)
     assert api_contract.volume() > 0
