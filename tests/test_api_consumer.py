@@ -61,5 +61,6 @@ def test_send_api_request_testnet(
     # Assert
     assert transaction is not None
     transaction.wait(2)
+    time.sleep(35)
     assert isinstance(api_contract.volume(), int)
     assert api_contract.volume() > 0

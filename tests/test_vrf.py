@@ -87,6 +87,7 @@ def test_returns_random_number_testnet(
         get_seed, {"from": get_account})
     assert isinstance(transaction_receipt.txid, str)
     transaction_receipt.wait(1)
+    time.sleep(35)
     # Assert
     assert vrf_consumer.randomResult() > 0
     assert isinstance(vrf_consumer.randomResult(), int)
