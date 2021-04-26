@@ -10,11 +10,14 @@ from brownie import (
     network,
 )
 
+LOCAL_BLOCKCHAIN_ENVIRONMENTS = ['hardhat', 'development', 'mainnet-fork']
+
 
 @pytest.fixture
 def get_eth_usd_price_feed_address():
-    if network.show_active() == "development":
-        mock_price_feed = MockV3Aggregator.deploy(18, 2000, {"from": accounts[0]})
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        mock_price_feed = MockV3Aggregator.deploy(
+            18, 2000, {"from": accounts[0]})
         return mock_price_feed.address
     if network.show_active() in config["networks"]:
         return config["networks"][network.show_active()]["eth_usd_price_feed"]
@@ -25,10 +28,7 @@ def get_eth_usd_price_feed_address():
 
 @pytest.fixture(scope="module")
 def get_account():
-    if (
-        network.show_active() == "development"
-        or network.show_active() == "mainnet-fork"
-    ):
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         return accounts[0]
     if network.show_active() in config["networks"]:
         dev_account = accounts.add(config["wallets"]["from_key"])
@@ -103,7 +103,8 @@ def get_data():
 @pytest.fixture
 def get_oracle(get_link_token, get_account):
     if network.show_active() == "development" or "fork" in network.show_active():
-        mock_oracle = MockOracle.deploy(get_link_token.address, {"from": get_account})
+        mock_oracle = MockOracle.deploy(
+            get_link_token.address, {"from": get_account})
         return mock_oracle
     if network.show_active() in config["networks"]:
         mock_oracle = Contract.from_abi(
