@@ -9,16 +9,21 @@ from brownie import (
     config,
     network,
 )
-
-LOCAL_BLOCKCHAIN_ENVIRONMENTS = ['hardhat', 'development', 'mainnet-fork']
+from scripts.helpful_scripts import (
+    LOCAL_BLOCKCHAIN_ENVIRONMENTS,
+    NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS,
+    get_account,
+)
 
 
 @pytest.fixture
 def get_eth_usd_price_feed_address():
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        mock_price_feed = MockV3Aggregator.deploy(
-            18, 2000, {"from": accounts[0]})
-        return mock_price_feed.address
+        if len(MockV3Aggregator) == 0:
+            mock_price_feed = MockV3Aggregator.deploy(18, 2000, {"from": accounts[0]})
+            return mock_price_feed.address
+        else:
+            return MockV3Aggregator[len(MockV3Aggregator) - 1].address
     if network.show_active() in config["networks"]:
         return config["networks"][network.show_active()]["eth_usd_price_feed"]
     else:
@@ -27,21 +32,13 @@ def get_eth_usd_price_feed_address():
 
 
 @pytest.fixture(scope="module")
-def get_account():
+def get_link_token():
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        return accounts[0]
-    if network.show_active() in config["networks"]:
-        dev_account = accounts.add(config["wallets"]["from_key"])
-        return dev_account
-    else:
-        pytest.skip("Invalid network/wallet specified ")
-
-
-@pytest.fixture(scope="module")
-def get_link_token(get_account):
-    if network.show_active() == "development" or "fork" in network.show_active():
-        link_token = LinkToken.deploy({"from": get_account})
-        return link_token
+        if len(LinkToken) == 0:
+            link_token = LinkToken.deploy({"from": get_account()})
+            return link_token
+        else:
+            return LinkToken[len(LinkToken) - 1]
     if network.show_active() in config["networks"]:
         return Contract.from_abi(
             "link_token",
@@ -53,12 +50,15 @@ def get_link_token(get_account):
 
 
 @pytest.fixture
-def get_vrf_coordinator(get_account, get_link_token):
-    if network.show_active() == "development" or "fork" in network.show_active():
-        mock_vrf_coordinator = VRFCoordinatorMock.deploy(
-            get_link_token.address, {"from": get_account}
-        )
-        return mock_vrf_coordinator
+def get_vrf_coordinator(get_link_token):
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        if len(VRFCoordinatorMock) == 0:
+            mock_vrf_coordinator = VRFCoordinatorMock.deploy(
+                get_link_token.address, {"from": get_account()}
+            )
+            return mock_vrf_coordinator
+        else:
+            return VRFCoordinatorMock[len(VRFCoordinatorMock) - 1]
     if network.show_active() in config["networks"]:
         vrf_coordinator = Contract.from_abi(
             "vrf_coordinator",
@@ -71,8 +71,8 @@ def get_vrf_coordinator(get_account, get_link_token):
 
 
 @pytest.fixture
-def get_keyhash(get_account, get_link_token):
-    if network.show_active() == "development" or "fork" in network.show_active():
+def get_keyhash():
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         return 0
     if network.show_active() in config["networks"]:
         return config["networks"][network.show_active()]["keyhash"]
@@ -82,7 +82,7 @@ def get_keyhash(get_account, get_link_token):
 
 @pytest.fixture
 def get_job_id():
-    if network.show_active() == "development" or "fork" in network.show_active():
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         return 0
     if network.show_active() in config["networks"]:
         return config["networks"][network.show_active()]["jobId"]
@@ -101,11 +101,15 @@ def get_data():
 
 
 @pytest.fixture
-def get_oracle(get_link_token, get_account):
-    if network.show_active() == "development" or "fork" in network.show_active():
-        mock_oracle = MockOracle.deploy(
-            get_link_token.address, {"from": get_account})
-        return mock_oracle
+def get_oracle(get_link_token):
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        if len(MockOracle) == 0:
+            mock_oracle = MockOracle.deploy(
+                get_link_token.address, {"from": get_account()}
+            )
+            return mock_oracle
+        else:
+            return MockOracle[len(MockOracle) - 1]
     if network.show_active() in config["networks"]:
         mock_oracle = Contract.from_abi(
             "mock_oracle",

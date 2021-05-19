@@ -23,10 +23,10 @@ def main():
         )
         return price_feed
     elif network.show_active() in ["kovan", "rinkeby", "mainnet"]:
-        dev = accounts.add(config["wallets"]["from_key"])
+        account = accounts.add(config["wallets"]["from_key"])
         return PriceFeed.deploy(
             config["networks"][network.show_active()]["eth_usd_price_feed"],
-            {"from": dev},
+            {"from": account},
             publish_source=config["verify"],
         )
     else:

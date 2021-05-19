@@ -14,7 +14,7 @@ compiler:
 # automatically fetch contract sources from Etherscan
 autofetch_sources: True
 dotenv: .env
-# Change to trye to verify smart contracts
+# Change to true to verify smart contracts
 verify: False
 # set a custom mnemonic for the development network
 networks:
@@ -37,6 +37,10 @@ networks:
     eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
   mumbai:
     eth_usd_price_feed: '0x0715A7794a1dc8e42615F059dD6e406A6594651A'
+    link_token: '0x326C977E6efc84E512bB9C30f76E30c160eD06FB'
+    vrf_coordinator: '0x8C7382F9D8f56b33781fE506E897a4F1e2d17255'
+    keyhash: '0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4'
+    fee: 1000000000000000000
   binance:
     # link_token: ??
     eth_usd_price_feed: '0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e'
