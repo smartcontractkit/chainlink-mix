@@ -1,5 +1,26 @@
 # chainlink-mix
 
+## TODO
+
+- Need to have the deploy scripts work for testnets. Follow something like "if local, then get address from mock"
+- Incorporate hardhat network
+- Edit: https://codeburst.io/deploy-a-smart-contract-using-python-how-to-b62de0124b
+- Edit: https://studio.youtube.com/video/QfFO22lwSw4/edit
+
+```
+🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺
+Update!
+
+Changed from:
+brownie run scripts/price_feed_scripts/deploy_price_consumer_v3.py --network kovan
+
+To:
+brownie run scripts/price_feed_scripts/01_deploy_price_consumer_v3.py --network kovan
+
+Most deployment scripts now have numbers associated with them. 
+🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺
+```
+
 <br/>
 <p align="center">
 <a href="https://chain.link" target="_blank">
@@ -16,6 +37,7 @@ This is a repo to work with and use Chainlink smart contracts in a python enviro
 You can also check out the more advanced Chainlink tutorials there as well. 
 
 - [chainlink-mix](#chainlink-mix)
+  - [TODO](#todo)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running Scripts and Deployment](#running-scripts-and-deployment)

@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from brownie import VRFConsumer, accounts, config, network
+from scripts.helpful_scripts import get_verify_status
 
 
 def main():
@@ -11,5 +12,5 @@ def main():
         config["networks"][network.show_active()]["link_token"],
         config["networks"][network.show_active()]["fee"],
         {"from": account},
-        publish_source=config["verify"],
+        publish_source=get_verify_status(),
     )

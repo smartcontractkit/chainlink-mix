@@ -2,7 +2,9 @@ from brownie import network, accounts, config, interface
 
 NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
-    "mainnet-fork"
+    "mainnet-fork",
+    "binance-fork",
+    "matic-fork",
 ]
 
 
@@ -29,3 +31,12 @@ def fund_with_link(
     )
     print("Funded {}".format(contract_address.address))
     return tx
+
+
+def get_verify_status():
+    verify = (
+        config["networks"][network.show_active()]["verify"]
+        if config["networks"][network.show_active()].get("verify")
+        else False
+    )
+    return verify
