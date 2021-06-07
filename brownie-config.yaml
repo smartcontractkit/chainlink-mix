@@ -17,6 +17,12 @@ dotenv: .env
 # set a custom mnemonic for the development network
 networks:
   default: development
+  development:
+    keyhash: '0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4'
+    fee: 100000000000000000
+    jobId: '29fa9aa13bf1468788b7cc4a500a45b8'
+    update_interval: 60
+    verify: False
   kovan:
     vrf_coordinator: '0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9'
     link_token: '0xa36085F69e2889c224210F603D836748e7dC0088'
@@ -26,6 +32,13 @@ networks:
     jobId: '29fa9aa13bf1468788b7cc4a500a45b8'
     eth_usd_price_feed: '0x9326BFA02ADD2366b30bacB125260Af641031331'
     # Change to True if you have an Etherscan API key and want to verify
+    verify: False
+    update_interval: 60
+  ganache:
+    keyhash: '0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4'
+    fee: 100000000000000000
+    jobId: '29fa9aa13bf1468788b7cc4a500a45b8'
+    update_interval: 60
     verify: False
   rinkeby:
     vrf_coordinator: '0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B'
@@ -37,6 +50,11 @@ networks:
     eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
     # Change to True if you have an Etherscan API key and want to verify
     verify: False
+  fuji:
+    link_token: '0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846'
+    fee: 100000000000000000
+    oracle: '0xcc80934eaf22b2c8dbf7a69e8e0d356a7cac5754'
+    jobId: '5ca4fa9b2d64462290abfbda84e38cf4'
   mumbai:
     eth_usd_price_feed: '0x0715A7794a1dc8e42615F059dD6e406A6594651A'
     link_token: '0x326C977E6efc84E512bB9C30f76E30c160eD06FB'

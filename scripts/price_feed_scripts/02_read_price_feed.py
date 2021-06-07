@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-from brownie import PriceFeed
+from brownie import PriceFeedConsumer
 
 
 def main():
-    price_feed_contract = PriceFeed[len(PriceFeed) - 1]
-    print("Reading data from {}".format(price_feed_contract.address))
+    price_feed_contract = PriceFeedConsumer[-1]
+    print(f"Reading data from {price_feed_contract.address}")
     print(price_feed_contract.getLatestPrice())

@@ -3,7 +3,6 @@ import pytest
 from brownie import VRFConsumer, convert, network
 from scripts.helpful_scripts import (
     get_account,
-    fund_with_link,
     LOCAL_BLOCKCHAIN_ENVIRONMENTS,
 )
 
