@@ -11,7 +11,6 @@ from brownie import (
 )
 from scripts.helpful_scripts import (
     LOCAL_BLOCKCHAIN_ENVIRONMENTS,
-    NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS,
     get_account,
 )
 

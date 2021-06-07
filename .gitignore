@@ -1,4 +1,6 @@
+
 # chainlink-mix
+.vscode
 .env
 build/
 

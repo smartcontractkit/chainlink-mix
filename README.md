@@ -1,25 +1,7 @@
 # chainlink-mix
 
-## TODO
+> NOTE: This has been recently updated for better compatibility with local blockchains. Check out the scripts to learn more. 
 
-- Need to have the deploy scripts work for testnets. Follow something like "if local, then get address from mock"
-- Incorporate hardhat network
-- Edit: https://codeburst.io/deploy-a-smart-contract-using-python-how-to-b62de0124b
-- Edit: https://studio.youtube.com/video/QfFO22lwSw4/edit
-
-```
-🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺
-Update!
-
-Changed from:
-brownie run scripts/price_feed_scripts/deploy_price_consumer_v3.py --network kovan
-
-To:
-brownie run scripts/price_feed_scripts/01_deploy_price_consumer_v3.py --network kovan
-
-Most deployment scripts now have numbers associated with them. 
-🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺
-```
 
 <br/>
 <p align="center">
@@ -37,14 +19,16 @@ This is a repo to work with and use Chainlink smart contracts in a python enviro
 You can also check out the more advanced Chainlink tutorials there as well. 
 
 - [chainlink-mix](#chainlink-mix)
-  - [TODO](#todo)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+  - [Testnet Development](#testnet-development)
+  - [Local Development](#local-development)
   - [Running Scripts and Deployment](#running-scripts-and-deployment)
     - [Chainlink Price Feeds](#chainlink-price-feeds)
     - [Chainlink VRF](#chainlink-vrf)
     - [Chainlink API Call](#chainlink-api-call)
-    - [Local Development](#local-development)
+    - [Chainlink Keeper Deployment](#chainlink-keeper-deployment)
+    - [Local Development](#local-development-1)
   - [Testing](#testing)
     - [To test development / local](#to-test-development--local)
     - [To test mainnet-fork](#to-test-mainnet-fork)
@@ -75,18 +59,7 @@ pipx ensurepath
 pipx install eth-brownie
 ```
 
-2. For local testing [install ganache-cli](https://www.npmjs.com/package/ganache-cli)
-*Skip if you only want to use testnets*
-
-```bash
-npm install -g ganache-cli
-```
-or
-```bash
-yarn add global ganache-cli
-```
-
-3. Download the mix and install dependancies. 
+2. Download the mix and install dependancies. 
 
 ```bash
 brownie bake chainlink-mix
@@ -101,9 +74,10 @@ git clone https://github.com/PatrickAlphaC/chainlink-mix
 cd chainlink-mix 
 ```
 
+## Testnet Development
 If you want to be able to deploy to testnets, do the following. 
 
-4. Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). 
+Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). 
 
 You can get a `WEB3_INFURA_PROJECT_ID` by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura with brownie. If you get lost, you can [follow this guide](https://ethereumico.io/knowledge-base/infura-api-key-guide/) to getting a project key. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
 
@@ -119,12 +93,32 @@ export PRIVATE_KEY=<PRIVATE_KEY>
 AND THEN RUN `source .env` TO ACTIVATE THE ENV VARIABLES
 (You'll need to do this everytime you open a new terminal, or [learn how to set them easier](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html))
 
+> DO NOT SEND YOUR PRIVATE KEY WITH FUNDS IN IT ONTO GITHUB
 
 Otherwise, you can build, test, and deploy on your local environment. 
+
+## Local Development
+
+For local testing [install ganache-cli](https://www.npmjs.com/package/ganache-cli)
+```bash
+npm install -g ganache-cli
+```
+or
+```bash
+yarn add global ganache-cli
+```
+
+All the scripts are designed to work locally or on a testnet. You can add a ganache-cli or ganache UI chain like so: 
+```
+brownie networks add Ethereum ganache host=http://localhost:8545 chainid=1337
+```
+And update the brownie config accordingly. There is a `deploy_mocks` script that will launch and deploy mock Oracles, VRFCoordinators, Link Tokens, and Price Feeds on a Local Blockchain. 
 
 ## Running Scripts and Deployment
 
 This mix provides a simple template for working with Chainlink Smart Contracts. The easiest way to start is to fork the mainnet chain to a local ganache chain. This will allow you to deploy local smart contracts to interact with the [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price). 
+
+> NOTE: It's highly encouraged that you work with a local chain before testing on a testnet. You'll be a much faster developer!
 
 ### Chainlink Price Feeds
 
@@ -141,7 +135,7 @@ brownie run scripts/price_feed_scripts/02_read_price_feed_with_ens.py --network 
 Otherwise, you can fork mainnet and use that in a local ganache development environment.
 ```bash
 brownie console --network mainnet-fork
->>> price_feeds = PriceFeed.deploy('0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419', {'from': accounts[0]})
+>>> price_feeds = PriceFeedConsumer.deploy('0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419', {'from': accounts[0]})
 .
 .
 >>> latest_price = price_feeds.getLatestPrice()
@@ -170,13 +164,19 @@ brownie run scripts/chainlink_api_scripts/02_request_api.py --network kovan
 brownie run scripts/chainlink_api_scripts/03_read_data.py --network kovan
 ```
 
+### Chainlink Keeper Deployment
+
+
+This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documenation. 
+```
+brownie run scripts/keeper_scripts/01_deploy_keeper_counter.py --network kovan
+brownie run scripts/keeper_scripts/02_check_upkeep.py --network kovan
+```
+
+
 ### Local Development
 
-For local development, you might want to deploy mocks. You can run the script to deploy mocks. Depending on your setup, it might make sense to *not* deploy mocks if you're looking to fork a mainnet. It all depends on what you're looking to do though.
-
-```bash
-brownie run scripts/00_deploy_mocks.py --network development
-```
+For local development, you might want to deploy mocks. You can run the script to deploy mocks. Depending on your setup, it might make sense to *not* deploy mocks if you're looking to fork a mainnet. It all depends on what you're looking to do though. Right now, the scripts automatically deploy a mock so they can run.
 
 ## Testing
 
