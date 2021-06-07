@@ -59,18 +59,7 @@ pipx ensurepath
 pipx install eth-brownie
 ```
 
-2. For local testing [install ganache-cli](https://www.npmjs.com/package/ganache-cli)
-*Skip if you only want to use testnets*
-
-```bash
-npm install -g ganache-cli
-```
-or
-```bash
-yarn add global ganache-cli
-```
-
-3. Download the mix and install dependancies. 
+2. Download the mix and install dependancies. 
 
 ```bash
 brownie bake chainlink-mix
@@ -109,6 +98,15 @@ AND THEN RUN `source .env` TO ACTIVATE THE ENV VARIABLES
 Otherwise, you can build, test, and deploy on your local environment. 
 
 ## Local Development
+
+For local testing [install ganache-cli](https://www.npmjs.com/package/ganache-cli)
+```bash
+npm install -g ganache-cli
+```
+or
+```bash
+yarn add global ganache-cli
+```
 
 All the scripts are designed to work locally or on a testnet. You can add a ganache-cli or ganache UI chain like so: 
 ```
