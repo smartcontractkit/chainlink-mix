@@ -224,7 +224,7 @@ brownie networks add development binance-fork cmd=ganache-cli host=http://127.0.
 ```
 pip install black 
 pip install autoflake
-autoflake --in-place --remove-unused-variables -r .
+autoflake --in-place --remove-unused-variables --remove-all-unused-imports -r .
 black .
 ```
 

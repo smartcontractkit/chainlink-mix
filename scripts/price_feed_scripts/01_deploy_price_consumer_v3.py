@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from brownie import PriceFeedConsumer, MockV3Aggregator, accounts, config, network
+from brownie import MockV3Aggregator, PriceFeedConsumer, config, network
 from scripts.helpful_scripts import (
     get_verify_status,
     get_account,
