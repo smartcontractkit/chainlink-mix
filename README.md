@@ -48,15 +48,16 @@ Please install or have installed the following:
 
 1. [Install Brownie](https://eth-brownie.readthedocs.io/en/stable/install.html), if you haven't already. Here is a simple way to install brownie.
 
-```bash
-pip install eth-brownie
-```
-Or, if that doesn't work, via pipx
+
 ```bash
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
 # restart your terminal
 pipx install eth-brownie
+```
+Or, if that doesn't work, via pip
+```bash
+pip install eth-brownie
 ```
 
 2. Download the mix and install dependancies. 
