@@ -53,8 +53,8 @@ pip install eth-brownie
 ```
 Or, if that doesn't work, via pipx
 ```bash
-pip install --user pipx
-pipx ensurepath
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
 # restart your terminal
 pipx install eth-brownie
 ```
