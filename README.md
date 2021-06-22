@@ -1,6 +1,6 @@
 # chainlink-mix
 
-> NOTE: This has been recently updated for better compatibility with local blockchains. Check out the scripts to learn more. 
+> NOTE: This has been recently updated for better compatibility with local blockchains. Check out the scripts to learn more.
 
 
 <br/>
@@ -16,7 +16,7 @@
 
 This is a repo to work with and use Chainlink smart contracts in a python environment. If you're brand new to Chainlink, check out the beginner walkthroughs in remix to [learn the basics.](https://docs.chain.link/docs/beginners-tutorial)
 
-You can also check out the more advanced Chainlink tutorials there as well. 
+You can also check out the more advanced Chainlink tutorials there as well.
 
 - [chainlink-mix](#chainlink-mix)
   - [Prerequisites](#prerequisites)
@@ -60,7 +60,7 @@ Or, if that doesn't work, via pip
 pip install eth-brownie
 ```
 
-2. Download the mix and install dependancies. 
+2. Download the mix and install dependancies.
 
 ```bash
 brownie bake chainlink-mix
@@ -72,19 +72,19 @@ This will open up a new Chainlink project. Or, you can clone from source:
 
 ```bash
 git clone https://github.com/PatrickAlphaC/chainlink-mix
-cd chainlink-mix 
+cd chainlink-mix
 ```
 
 ## Testnet Development
-If you want to be able to deploy to testnets, do the following. 
+If you want to be able to deploy to testnets, do the following.
 
-Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). 
+Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html).
 
-You can get a `WEB3_INFURA_PROJECT_ID` by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura with brownie. If you get lost, you can [follow this guide](https://ethereumico.io/knowledge-base/infura-api-key-guide/) to getting a project key. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
+You can get a `WEB3_INFURA_PROJECT_ID` by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura with brownie. If you get lost, you can [follow this guide](https://ethereumico.io/knowledge-base/infura-api-key-guide/) to getting a project key. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/).
 
 You'll also need testnet rinkeby ETH and LINK. You can get LINK and ETH into your wallet by using the [rinkeby faucets located here](https://docs.chain.link/docs/link-token-contracts#rinkeby). If you're new to this, [watch this video.](https://www.youtube.com/watch?v=P7FX_1PePX0)
 
-You can add your environment variables to the `.env` file:
+You can add your environment variables to a `.env` file. You can use the [.env.exmple](https://github.com/smartcontractkit/chainlink-mix/blob/master/.env.example) as a template, just fill in the values and rename it to '.env'
 
 ```
 export WEB3_INFURA_PROJECT_ID=<PROJECT_ID>
@@ -94,9 +94,12 @@ export PRIVATE_KEY=<PRIVATE_KEY>
 AND THEN RUN `source .env` TO ACTIVATE THE ENV VARIABLES
 (You'll need to do this everytime you open a new terminal, or [learn how to set them easier](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html))
 
-> DO NOT SEND YOUR PRIVATE KEY WITH FUNDS IN IT ONTO GITHUB
 
-Otherwise, you can build, test, and deploy on your local environment. 
+![WARNING](https://via.placeholder.com/15/f03c15/000000?text=+) **WARNING** ![WARNING](https://via.placeholder.com/15/f03c15/000000?text=+)
+
+DO NOT SEND YOUR PRIVATE KEY WITH FUNDS IN IT ONTO GITHUB
+
+Otherwise, you can build, test, and deploy on your local environment.
 
 ## Local Development
 
@@ -109,21 +112,21 @@ or
 yarn add global ganache-cli
 ```
 
-All the scripts are designed to work locally or on a testnet. You can add a ganache-cli or ganache UI chain like so: 
+All the scripts are designed to work locally or on a testnet. You can add a ganache-cli or ganache UI chain like so:
 ```
 brownie networks add Ethereum ganache host=http://localhost:8545 chainid=1337
 ```
-And update the brownie config accordingly. There is a `deploy_mocks` script that will launch and deploy mock Oracles, VRFCoordinators, Link Tokens, and Price Feeds on a Local Blockchain. 
+And update the brownie config accordingly. There is a `deploy_mocks` script that will launch and deploy mock Oracles, VRFCoordinators, Link Tokens, and Price Feeds on a Local Blockchain.
 
 ## Running Scripts and Deployment
 
-This mix provides a simple template for working with Chainlink Smart Contracts. The easiest way to start is to fork the mainnet chain to a local ganache chain. This will allow you to deploy local smart contracts to interact with the [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price). 
+This mix provides a simple template for working with Chainlink Smart Contracts. The easiest way to start is to fork the mainnet chain to a local ganache chain. This will allow you to deploy local smart contracts to interact with the [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price).
 
 > NOTE: It's highly encouraged that you work with a local chain before testing on a testnet. You'll be a much faster developer!
 
 ### Chainlink Price Feeds
 
-This will deploy a smart contract to kovan and then read you the latest price via [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price). 
+This will deploy a smart contract to kovan and then read you the latest price via [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price).
 ```
 brownie run scripts/price_feed_scripts/01_deploy_price_consumer_v3.py --network kovan
 brownie run scripts/price_feed_scripts/02_read_price_feed.py --network kovan
@@ -144,11 +147,11 @@ brownie console --network mainnet-fork
 59169208540
 ```
 
-You can also use [ENS](https://docs.chain.link/docs/ens) to get prices. See the [ens price feed script](./scripts/price_feed_scripts/read_price_with_ens.py) for more information. 
+You can also use [ENS](https://docs.chain.link/docs/ens) to get prices. See the [ens price feed script](./scripts/price_feed_scripts/read_price_with_ens.py) for more information.
 
 ### Chainlink VRF
 
-This will deploy a smart contract to kovan and get a Random number via [Chainlink VRF](https://docs.chain.link/docs/get-a-random-number). 
+This will deploy a smart contract to kovan and get a Random number via [Chainlink VRF](https://docs.chain.link/docs/get-a-random-number).
 ```
 brownie run scripts/vrf_scripts/01_deploy_vrf.py --network kovan
 brownie run scripts/vrf_scripts/02_request_randomness.py --network kovan
@@ -158,7 +161,7 @@ brownie run scripts/vrf_scripts/03_read_random_number.py --network kovan
 ### Chainlink API Call
 
 
-This will deploy a smart contract to kovan and then make an API call via [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request). 
+This will deploy a smart contract to kovan and then make an API call via [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request).
 ```
 brownie run scripts/chainlink_api_scripts/01_deploy_api_consumer.py --network kovan
 brownie run scripts/chainlink_api_scripts/02_request_api.py --network kovan
@@ -168,7 +171,7 @@ brownie run scripts/chainlink_api_scripts/03_read_data.py --network kovan
 ### Chainlink Keeper Deployment
 
 
-This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documenation. 
+This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documenation.
 ```
 brownie run scripts/keeper_scripts/01_deploy_keeper_counter.py --network kovan
 brownie run scripts/keeper_scripts/02_check_upkeep.py --network kovan
@@ -187,9 +190,9 @@ brownie test
 
 For more information on effective testing with Chainlink, check out [Testing Smart Contracts](https://blog.chain.link/testing-chainlink-smart-contracts/)
 
-Tests are really robust here! They work for local development and testnets. There are a few key differences between the testnets and the local networks. We utilize mocks so we can work with fake oracles on our testnets. 
+Tests are really robust here! They work for local development and testnets. There are a few key differences between the testnets and the local networks. We utilize mocks so we can work with fake oracles on our testnets.
 
-There is a `test_unnecessary` folder, which is a good exersize for learning some of the nitty-gritty of smart contract development. It's overkill, so pytest will skip them intentionally. It also has a `test_samples` folder, which shows an example Chainlink API call transaction receipt. 
+There is a `test_unnecessary` folder, which is a good exersize for learning some of the nitty-gritty of smart contract development. It's overkill, so pytest will skip them intentionally. It also has a `test_samples` folder, which shows an example Chainlink API call transaction receipt.
 
 
 ### To test development / local
@@ -214,7 +217,7 @@ If the blockchain is EVM Compatible, adding new chains can be accomplished by so
 ```
 brownie networks add Ethereum binance-smart-chain host=https://bsc-dataseed1.binance.org chainid=56
 ```
-or, for a fork: 
+or, for a fork:
 
 ```
 brownie networks add development binance-fork cmd=ganache-cli host=http://127.0.0.1 fork=https://bsc-dataseed1.binance.org accounts=10 mnemonic=brownie port=8545
@@ -223,7 +226,7 @@ brownie networks add development binance-fork cmd=ganache-cli host=http://127.0.
 ## Linting
 
 ```
-pip install black 
+pip install black
 pip install autoflake
 autoflake --in-place --remove-unused-variables --remove-all-unused-imports -r .
 black .
@@ -234,7 +237,7 @@ black .
 To get started with Brownie:
 
 * [Chainlink Documentation](https://docs.chain.link/docs)
-* Check out the [Chainlink documentation](https://docs.chain.link/docs) to get started from any level of smart contract engineering. 
+* Check out the [Chainlink documentation](https://docs.chain.link/docs) to get started from any level of smart contract engineering.
 * Check out the other [Brownie mixes](https://github.com/brownie-mix/) that can be used as a starting point for your own contracts. They also provide example code to help you get started.
 * ["Getting Started with Brownie"](https://medium.com/@iamdefinitelyahuman/getting-started-with-brownie-part-1-9b2181f4cb99) is a good tutorial to help you familiarize yourself with Brownie.
 * For more in-depth information, read the [Brownie documentation](https://eth-brownie.readthedocs.io/en/stable/).
