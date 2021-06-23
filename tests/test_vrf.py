@@ -8,11 +8,7 @@ from scripts.helpful_scripts import (
 
 
 def test_can_request_random_number(
-    get_vrf_coordinator,
-    get_keyhash,
-    get_link_token,
-    chainlink_fee,
-    get_seed,
+    get_vrf_coordinator, get_keyhash, get_link_token, chainlink_fee
 ):
     # Arrange
     vrf_consumer = VRFConsumer.deploy(
@@ -26,16 +22,12 @@ def test_can_request_random_number(
         vrf_consumer.address, chainlink_fee * 3, {"from": get_account()}
     )
     # Act
-    requestId = vrf_consumer.getRandomNumber.call(get_seed, {"from": get_account()})
+    requestId = vrf_consumer.getRandomNumber.call({"from": get_account()})
     assert isinstance(requestId, convert.datatypes.HexString)
 
 
 def test_returns_random_number_local(
-    get_vrf_coordinator,
-    get_keyhash,
-    get_link_token,
-    chainlink_fee,
-    get_seed,
+    get_vrf_coordinator, get_keyhash, get_link_token, chainlink_fee
 ):
     # Arrange
     if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
@@ -51,10 +43,8 @@ def test_returns_random_number_local(
         vrf_consumer.address, chainlink_fee * 3, {"from": get_account()}
     )
     # Act
-    transaction_receipt = vrf_consumer.getRandomNumber(
-        get_seed, {"from": get_account()}
-    )
-    requestId = vrf_consumer.getRandomNumber.call(get_seed, {"from": get_account()})
+    transaction_receipt = vrf_consumer.getRandomNumber({"from": get_account()})
+    requestId = vrf_consumer.getRandomNumber.call({"from": get_account()})
     assert isinstance(transaction_receipt.txid, str)
     get_vrf_coordinator.callBackWithRandomness(
         requestId, 777, vrf_consumer.address, {"from": get_account()}
@@ -69,7 +59,6 @@ def test_returns_random_number_testnet(
     get_keyhash,
     get_link_token,
     chainlink_fee,
-    get_seed,
 ):
     # Arrange
     if network.show_active() not in ["kovan", "rinkeby", "ropsten"]:
@@ -85,9 +74,7 @@ def test_returns_random_number_testnet(
         vrf_consumer.address, chainlink_fee * 3, {"from": get_account()}
     )
     # Act
-    transaction_receipt = vrf_consumer.getRandomNumber(
-        get_seed, {"from": get_account()}
-    )
+    transaction_receipt = vrf_consumer.getRandomNumber({"from": get_account()})
     assert isinstance(transaction_receipt.txid, str)
     transaction_receipt.wait(1)
     time.sleep(35)
