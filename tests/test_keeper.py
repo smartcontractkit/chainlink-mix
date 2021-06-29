@@ -18,7 +18,8 @@ def test_can_call_check_upkeep():
     assert isinstance(performData, bytes)
     assert upkeepNeeded is False
     # Since the interval is 2, after 2 seconds the upkeep should return true
-    time.sleep(2)
+    # We are extra safe and just make it 4
+    time.sleep(4)
     upkeepNeeded, performData = counter.checkUpkeep.call(
         "",
         {"from": account},
