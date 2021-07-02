@@ -1,9 +1,12 @@
-from brownie import Counter
+from brownie import Counter, network
+import pytest
 from scripts.helpful_scripts import get_account
 import time
 
 
 def test_can_call_check_upkeep():
+    if network.show_active() not in ["kovan", "rinkeby", "mainnet"]:
+        pytest.skip("Only for integration testing")
     # Arrange
     interval = 2
     account = get_account()
