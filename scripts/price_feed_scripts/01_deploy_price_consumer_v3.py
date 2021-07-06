@@ -1,25 +1,17 @@
 #!/usr/bin/python3
-from brownie import MockV3Aggregator, PriceFeedConsumer, config, network
+from brownie import PriceFeedConsumer
 from scripts.helpful_scripts import (
     get_verify_status,
     get_account,
-    NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS,
+    get_contract,
 )
-from scripts.deploy_mocks import deploy_mocks
 
 
 def deploy_price_feed_consumer():
     account = get_account()
-    if network.show_active() in NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        if len(MockV3Aggregator) <= 0:
-            deploy_mocks()
-        eth_usd_price_feed = MockV3Aggregator[-1].address
-    else:
-        eth_usd_price_feed = config["networks"][network.show_active()][
-            "eth_usd_price_feed"
-        ]
+    eth_usd_price_feed_address = get_contract("eth_usd_price_feed").address
     price_feed = PriceFeedConsumer.deploy(
-        eth_usd_price_feed,
+        eth_usd_price_feed_address,
         {"from": account},
         publish_source=get_verify_status(),
     )
