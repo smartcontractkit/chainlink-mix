@@ -10,4 +10,5 @@ def main():
         api_contract, amount=config["networks"][network.show_active()]["fee"]
     )
     tx.wait(1)
-    api_contract.requestVolumeData({"from": account})
+    request_tx = api_contract.requestVolumeData({"from": account})
+    request_tx.wait(1)
