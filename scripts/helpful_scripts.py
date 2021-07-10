@@ -7,6 +7,7 @@ from brownie import (
     MockV3Aggregator,
     MockOracle,
     VRFCoordinatorMock,
+    Contract,
 )
 
 NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
@@ -61,7 +62,9 @@ def get_contract(contract_name):
     else:
         try:
             contract_address = config["networks"][network.show_active()][contract_name]
-            contract = contract_type.at(contract_address)
+            contract = Contract.from_abi(
+                contract_type._name, contract_address, contract_type.abi
+            )
         except KeyError:
             print(
                 f"{network.show_active()} address not found, perhaps you should add it to the config or deploy mocks?"
