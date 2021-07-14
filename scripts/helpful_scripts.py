@@ -88,12 +88,7 @@ def fund_with_link(
 
 
 def get_verify_status():
-    verify = (
-        config["networks"][network.show_active()]["verify"]
-        if config["networks"][network.show_active()].get("verify")
-        else False
-    )
-    return verify
+    return config["networks"][network.show_active()].get("verify", False)
 
 
 def deploy_mocks(decimals=18, initial_value=2000):
