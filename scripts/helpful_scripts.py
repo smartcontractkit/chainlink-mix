@@ -83,7 +83,7 @@ def fund_with_link(
     tx = interface.LinkTokenInterface(link_token).transfer(
         contract_address, amount, {"from": account}
     )
-    print("Funded {}".format(contract_address.address))
+    print("Funded {}".format(contract_address))
     return tx
 
 
