@@ -8,7 +8,7 @@ def deploy_keeper_counter():
     return Counter.deploy(
         config["networks"][network.show_active()]["update_interval"],
         {"from": account},
-        publish_source=get_verify_status(),
+        publish_source=config["networks"][network.show_active()].get("verify", False),
     )
 
 

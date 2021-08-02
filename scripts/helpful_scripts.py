@@ -82,15 +82,13 @@ def fund_with_link(
 ):
     account = account if account else get_account()
     link_token = link_token if link_token else get_contract("link_token")
-    tx = interface.LinkTokenInterface(link_token).transfer(
-        contract_address, amount, {"from": account}
-    )
+    ### Keep this line to show how it could be done without deploying a mock
+    # tx = interface.LinkTokenInterface(link_token.address).transfer(
+    #     contract_address, amount, {"from": account}
+    # )
+    tx = link_token.transfer(contract_address, amount, {"from": account})
     print("Funded {}".format(contract_address))
     return tx
-
-
-def get_verify_status():
-    return config["networks"][network.show_active()].get("verify", False)
 
 
 def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):

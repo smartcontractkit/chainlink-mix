@@ -2,7 +2,6 @@
 from brownie import APIConsumer, config, network
 from scripts.helpful_scripts import (
     get_account,
-    get_verify_status,
     get_contract,
 )
 
@@ -19,7 +18,7 @@ def deploy_api_consumer():
         fee,
         link_token,
         {"from": account},
-        publish_source=get_verify_status(),
+        publish_source=config["networks"][network.show_active()].get("verify", False),
     )
     print(f"API Consumer deployed to {api_consumer.address}")
     return api_consumer

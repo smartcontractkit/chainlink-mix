@@ -21,7 +21,7 @@ def depoly_vrf():
         link_token,
         fee,
         {"from": account},
-        publish_source=get_verify_status(),
+        publish_source=config["networks"][network.show_active()].get("verify", False),
     )
 
 

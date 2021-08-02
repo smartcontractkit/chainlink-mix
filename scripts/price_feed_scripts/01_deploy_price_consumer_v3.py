@@ -13,7 +13,7 @@ def deploy_price_feed_consumer():
     price_feed = PriceFeedConsumer.deploy(
         eth_usd_price_feed_address,
         {"from": account},
-        publish_source=get_verify_status(),
+        publish_source=config["networks"][network.show_active()].get("verify", False),
     )
     print(f"The current price of ETH is {price_feed.getLatestPrice()}")
     return price_feed
