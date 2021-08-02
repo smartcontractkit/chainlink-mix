@@ -9,6 +9,7 @@ from brownie import (
     VRFCoordinatorMock,
     Contract,
 )
+from web3 import Web3
 
 NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
@@ -23,6 +24,9 @@ contract_to_mock = {
     "vrf_coordinator": VRFCoordinatorMock,
     "oracle": MockOracle,
 }
+
+DECIMALS = 18
+INITIAL_VALUE = Web3.toWei(2000, "ether")
 
 
 def get_account(index=None, id=None):
@@ -89,7 +93,7 @@ def get_verify_status():
     return config["networks"][network.show_active()].get("verify", False)
 
 
-def deploy_mocks(decimals=18, initial_value=2000):
+def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):
     """
     Use this script if you want to deploy mocks to a testnet
     """
