@@ -2,7 +2,6 @@
 from brownie import VRFConsumer, config, network
 from scripts.helpful_scripts import (
     get_account,
-    get_verify_status,
     get_contract,
 )
 

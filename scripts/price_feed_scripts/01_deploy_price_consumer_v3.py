@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-from brownie import PriceFeedConsumer
+from brownie import PriceFeedConsumer, config, network
 from scripts.helpful_scripts import (
-    get_verify_status,
     get_account,
     get_contract,
 )
