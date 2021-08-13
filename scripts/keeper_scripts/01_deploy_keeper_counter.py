@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from scripts.helpful_scripts import get_account, get_verify_status
+from scripts.helpful_scripts import get_account
 from brownie import Counter, config, network
 
 
