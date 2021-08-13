@@ -1,6 +1,5 @@
 from brownie import Counter
 from scripts.helpful_scripts import get_account
-import time
 
 
 def test_can_call_check_upkeep():

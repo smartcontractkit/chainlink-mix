@@ -2,7 +2,6 @@ from brownie import (
     network,
     accounts,
     config,
-    interface,
     LinkToken,
     MockV3Aggregator,
     MockOracle,
