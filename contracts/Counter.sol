@@ -1,6 +1,5 @@
 pragma solidity ^0.6.7;
 
-import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
 interface KeeperCompatibleInterface {
     function checkUpkeep(bytes calldata checkData) external returns (bool upkeepNeeded, bytes memory performData);
