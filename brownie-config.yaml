@@ -4,13 +4,13 @@ reports:
   exclude_contracts:
     - SafeMath
 dependencies:
-  - smartcontractkit/chainlink-brownie-contracts@0.2.1
-  - OpenZeppelin/openzeppelin-contracts@3.4.0
+  - smartcontractkit/chainlink-brownie-contracts@0.2.2
+  - OpenZeppelin/openzeppelin-contracts@4.3.2
 compiler:
   solc:
     remappings:
-      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1'
-      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.4.0'
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.2'
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.3.2'
 # automatically fetch contract sources from Etherscan
 autofetch_sources: True
 # Uncomment to use the .env file
@@ -29,8 +29,8 @@ networks:
     link_token: '0xa36085F69e2889c224210F603D836748e7dC0088'
     keyhash: '0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4'
     fee: 100000000000000000
-    oracle: '0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e'
-    jobId: '29fa9aa13bf1468788b7cc4a500a45b8'
+    oracle: '0xc57b33452b4f7bb189bb5afae9cc4aba1f7a4fd8'
+    jobId: 'd5270d1c311941d0b08bead21fea7747'
     eth_usd_price_feed: '0x9326BFA02ADD2366b30bacB125260Af641031331'
     # Change to True if you have an Etherscan API key and want to verify
     verify: False
@@ -46,8 +46,8 @@ networks:
     link_token: '0x01be23585060835e02b77ef475b0cc51aa1e0709'
     keyhash: '0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311'
     fee: 100000000000000000
-    oracle: '0x7AFe1118Ea78C1eae84ca8feE5C65Bc76CcF879e'
-    jobId: '6d1bfe27e7034b1d87b5270556b17277'
+    oracle: '0xc57b33452b4f7bb189bb5afae9cc4aba1f7a4fd8'
+    jobId: '6b88e0402e5d415eb946e528b8e0c7ba'
     eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
     # Change to True if you have an Etherscan API key and want to verify
     verify: False

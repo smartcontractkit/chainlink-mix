@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.6;
+pragma solidity ^0.8.0;
 
-import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 
 contract APIConsumer is ChainlinkClient {
-  
+    using Chainlink for Chainlink.Request;
     uint256 public volume;
     
     address private oracle;
@@ -17,7 +17,7 @@ contract APIConsumer is ChainlinkClient {
      * Job ID: 29fa9aa13bf1468788b7cc4a500a45b8
      * Fee: 0.1 LINK
      */
-    constructor(address _oracle, string memory _jobId, uint256 _fee, address _link) public {
+    constructor(address _oracle, string memory _jobId, uint256 _fee, address _link) {
         if (_link == address(0)) {
             setPublicChainlinkToken();
         } else {

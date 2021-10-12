@@ -1,10 +1,7 @@
-pragma solidity ^0.6.7;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-
-interface KeeperCompatibleInterface {
-    function checkUpkeep(bytes calldata checkData) external returns (bool upkeepNeeded, bytes memory performData);
-    function performUpkeep(bytes calldata performData) external;
-}
+import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
 
 contract Counter is KeeperCompatibleInterface {
     /**
@@ -20,7 +17,7 @@ contract Counter is KeeperCompatibleInterface {
     uint public lastTimeStamp;
 
     
-    constructor(uint updateInterval) public {
+    constructor(uint updateInterval) {
       interval = updateInterval;
       lastTimeStamp = block.timestamp;
 

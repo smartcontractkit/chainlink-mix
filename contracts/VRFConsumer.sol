@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.6.6;
+pragma solidity ^0.8.0;
 
-import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
+import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 
 contract VRFConsumer is VRFConsumerBase {
     
@@ -22,7 +22,7 @@ contract VRFConsumer is VRFConsumerBase {
         VRFConsumerBase(
             _vrfCoordinator, // VRF Coordinator
             _linkToken  // LINK Token
-        ) public
+        ) 
     {
         keyHash = _keyhash;
         // fee = 0.1 * 10 ** 18; // 0.1 LINK

@@ -233,6 +233,18 @@ autoflake --in-place --remove-unused-variables --remove-all-unused-imports -r .
 black .
 ```
 
+If you're using [vscode](https://code.visualstudio.com/) and the [solidity extension](https://github.com/juanfranblanco/vscode-solidity), you can create a folder called `.vscode` at the root folder of this project, and create a file called `settings.json`, and add the following content:
+
+```json
+{
+  "solidity.remappings": [
+    "@chainlink/=[YOUR_HOME_DIR]/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2",
+    "@openzeppelin/=[YOUR_HOME_DIR]/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2"
+  ]
+}
+```
+This will quiet the linting errors it gives you. 
+
 ## Resources
 
 To get started with Brownie:

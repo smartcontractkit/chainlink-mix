@@ -72,7 +72,7 @@ def test_returns_random_number_testnet(
     transaction_receipt = vrf_consumer.getRandomNumber({"from": get_account()})
     assert isinstance(transaction_receipt.txid, str)
     transaction_receipt.wait(1)
-    time.sleep(35)
+    time.sleep(90)
     # Assert
     assert vrf_consumer.randomResult() > 0
     assert isinstance(vrf_consumer.randomResult(), int)
