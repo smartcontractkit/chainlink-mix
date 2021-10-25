@@ -41,7 +41,8 @@ def test_returns_random_number_local(get_keyhash, chainlink_fee):
     )
     # Act
     transaction_receipt = vrf_consumer.getRandomNumber({"from": get_account()})
-    requestId = vrf_consumer.getRandomNumber.call({"from": get_account()})
+    # requestId = vrf_consumer.getRandomNumber.call({"from": get_account()})
+    requestId = transaction_receipt.return_value
     assert isinstance(transaction_receipt.txid, str)
     get_contract("vrf_coordinator").callBackWithRandomness(
         requestId, 777, vrf_consumer.address, {"from": get_account()}
