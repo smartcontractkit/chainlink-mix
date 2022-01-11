@@ -14,7 +14,7 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/smartcontractkit/chainlink-mix.svg)](http://isitmaintained.com/project/smartcontractkit/chainlink-mix "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/smartcontractkit/chainlink-mix.svg)](http://isitmaintained.com/project/smartcontractkit/chainlink-mix "Percentage of issues still open")
 
-This is a repo to work with and use Chainlink smart contracts in a python environment. If you're brand new to Chainlink, check out the beginner walkthroughs in remix to [learn the basics.](https://docs.chain.link/docs/beginners-tutorial)
+This is a repo to work with and use Chainlink smart contracts in a python environment. If you're brand new to Chainlink, check out the beginner walk-through in remix to [learn the basics.](https://docs.chain.link/docs/beginners-tutorial)
 
 You can also check out the more advanced Chainlink tutorials there as well.
 
@@ -60,7 +60,7 @@ Or, if that doesn't work, via pip
 pip install eth-brownie
 ```
 
-2. Download the mix and install dependancies.
+2. Download the mix and install dependencies.
 
 ```bash
 brownie bake chainlink-mix
@@ -93,7 +93,7 @@ export PRIVATE_KEY=<PRIVATE_KEY>
 ```
 
 AND THEN RUN `source .env` TO ACTIVATE THE ENV VARIABLES
-(You'll need to do this everytime you open a new terminal, or [learn how to set them easier](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html))
+(You'll need to do this every time you open a new terminal, or [learn how to set them easier](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html))
 
 
 ![WARNING](https://via.placeholder.com/15/f03c15/000000?text=+) **WARNING** ![WARNING](https://via.placeholder.com/15/f03c15/000000?text=+)
@@ -172,7 +172,7 @@ brownie run scripts/chainlink_api_scripts/03_read_data.py --network kovan
 ### Chainlink Keeper Deployment
 
 
-This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documenation.
+This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documentation.
 ```
 brownie run scripts/keeper_scripts/01_deploy_keeper_counter.py --network kovan
 brownie run scripts/keeper_scripts/02_check_upkeep.py --network kovan
@@ -193,7 +193,7 @@ For more information on effective testing with Chainlink, check out [Testing Sma
 
 Tests are really robust here! They work for local development and testnets. There are a few key differences between the testnets and the local networks. We utilize mocks so we can work with fake oracles on our testnets.
 
-There is a `test_unnecessary` folder, which is a good exersize for learning some of the nitty-gritty of smart contract development. It's overkill, so pytest will skip them intentionally. It also has a `test_samples` folder, which shows an example Chainlink API call transaction receipt.
+There is a `test_unnecessary` folder, which is a good exercise for learning some of the nitty-gritty of smart contract development. It's overkill, so pytest will skip them intentionally. It also has a `test_samples` folder, which shows an example Chainlink API call transaction receipt.
 
 
 ### To test development / local

@@ -40,19 +40,19 @@ def get_account(index=None, id=None):
 
 def get_contract(contract_name):
     """If you want to use this function, go to the brownie config and add a new entry for
-    the contract that you want to be able to 'get'. Then add an entry in the in the variable 'contract_to_mock'.
+    the contract that you want to be able to 'get'. Then add an entry in the variable 'contract_to_mock'.
     You'll see examples like the 'link_token'.
         This script will then either:
             - Get a address from the config
             - Or deploy a mock to use for a network that doesn't have it
 
         Args:
-            contract_name (string): This is the name that is refered to in the
+            contract_name (string): This is the name that is referred to in the
             brownie config and 'contract_to_mock' variable.
 
         Returns:
             brownie.network.contract.ProjectContract: The most recently deployed
-            Contract of the type specificed by the dictonary. This could be either
+            Contract of the type specificed by the dictionary. This could be either
             a mock or the 'real' contract on a live network.
     """
     contract_type = contract_to_mock[contract_name]
