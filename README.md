@@ -6,7 +6,7 @@
 <br/>
 <p align="center">
 <a href="https://chain.link" target="_blank">
-<img src="https://raw.githubusercontent.com/smartcontractkit/chainlink-mix/master/img/chainlink-brownie.png" width="225" alt="Chainlink Brownie logo">
+<img src="./img/chainlink-brownie.png" width="225" alt="Chainlink Brownie logo">
 </a>
 </p>
 <br/>
