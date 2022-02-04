@@ -14,14 +14,19 @@ def depoly_vrf():
     vrf_coordinator = get_contract("vrf_coordinator")
     link_token = get_contract("link_token")
 
-    return VRFConsumer.deploy(
+    vrf_consumer =  VRFConsumer.deploy(
         keyhash,
         vrf_coordinator,
         link_token,
         fee,
         {"from": account},
-        publish_source=config["networks"][network.show_active()].get("verify", False),
     )
+
+    if (config["networks"][network.show_active()].get("verify", False)):
+        vrf_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
+        VRFConsumer.publish_source(vrf_consumer)
+    else: 
+        vrf_consumer.tx.wait(1)
 
 
 def main():

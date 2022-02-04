@@ -6,10 +6,11 @@ import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 contract APIConsumer is ChainlinkClient {
     using Chainlink for Chainlink.Request;
     uint256 public volume;
-    
-    address private oracle;
-    bytes32 private jobId;
-    uint256 private fee;
+    address public oracle;
+    bytes32 public jobId;
+    uint256 public fee;
+
+    event DataFullfilled(uint256 volume);
     
     /**
      * Network: Kovan
@@ -66,6 +67,7 @@ contract APIConsumer is ChainlinkClient {
     function fulfill(bytes32 _requestId, uint256 _volume) public recordChainlinkFulfillment(_requestId)
     {
         volume = _volume;
+        emit DataFullfilled(volume);
     }
 
     // function stringToBytes32(string memory source) public pure returns (bytes32 result) {

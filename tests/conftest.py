@@ -7,6 +7,7 @@ from brownie import (
 from scripts.helpful_scripts import (
     LOCAL_BLOCKCHAIN_ENVIRONMENTS,
 )
+from web3 import Web3
 
 
 @pytest.fixture
@@ -24,7 +25,7 @@ def get_job_id():
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         return 0
     if network.show_active() in config["networks"]:
-        return config["networks"][network.show_active()]["jobId"]
+        return Web3.toHex(text=config["networks"][network.show_active()]["jobId"])
     else:
         pytest.skip("Invalid network/link token specified")
 
@@ -46,7 +47,12 @@ def node_account():
 
 @pytest.fixture
 def chainlink_fee():
-    return 1000000000000000000
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        return 1000000000000000000
+    if network.show_active() in config["networks"]:
+        return config["networks"][network.show_active()]["fee"]
+    else:
+        pytest.skip("Invalid network/link token specified ")
 
 
 @pytest.fixture
