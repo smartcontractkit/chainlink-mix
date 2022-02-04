@@ -120,7 +120,7 @@ def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):
 
 
 def listen_for_event(brownie_contract, event, timeout=200, poll_interval=2):
-    """Listen asyncronously for an event to be fired from a contract.
+    """Listen for an event to be fired from a contract.
     We are waiting for the event to return, so this function is blocking.
 
     Args:
