@@ -1,3 +1,5 @@
+> NOTE: The new default branch is `main`
+
 # chainlink-mix
 
 > NOTE: This has been recently updated for better compatibility with local blockchains. Check out the scripts to learn more.
