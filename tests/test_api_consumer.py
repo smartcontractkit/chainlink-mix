@@ -7,7 +7,7 @@ from scripts.helpful_scripts import (
     get_account,
     listen_for_event,
     get_contract,
-    fund_with_link
+    fund_with_link,
 )
 
 
@@ -21,9 +21,9 @@ def deploy_api_contract(get_job_id, chainlink_fee):
         get_contract("link_token").address,
         {"from": get_account()},
     )
-    block_confirmations=6
+    block_confirmations = 6
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        block_confirmations=1
+        block_confirmations = 1
     api_consumer.tx.wait(block_confirmations)
     # Assert
     assert api_consumer is not None
@@ -52,18 +52,17 @@ def test_send_api_request_local(
     assert isinstance(api_contract.volume(), int)
     assert api_contract.volume() > 0
 
+
 def test_send_api_request_testnet(deploy_api_contract, chainlink_fee):
     # Arrange
     if network.show_active() not in ["kovan", "rinkeby", "mainnet"]:
         pytest.skip("Only for testnet testing")
     api_contract = deploy_api_contract
 
-    if (config["networks"][network.show_active()].get("verify", False)):
+    if config["networks"][network.show_active()].get("verify", False):
         APIConsumer.publish_source(api_contract)
 
-    tx = fund_with_link(
-        api_contract.address, amount=chainlink_fee
-    )
+    tx = fund_with_link(api_contract.address, amount=chainlink_fee)
     tx.wait(1)
     # Act
     transaction = api_contract.requestVolumeData({"from": get_account()})

@@ -20,10 +20,10 @@ def deploy_api_consumer():
         link_token,
         {"from": account},
     )
-    if (config["networks"][network.show_active()].get("verify", False)):
+    if config["networks"][network.show_active()].get("verify", False):
         api_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
         APIConsumer.publish_source(api_consumer)
-    else: 
+    else:
         api_consumer.tx.wait(1)
     print(f"API Consumer deployed to {api_consumer.address}")
     return api_consumer
