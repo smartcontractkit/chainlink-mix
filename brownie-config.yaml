@@ -1,11 +1,11 @@
 dependencies:
-  - smartcontractkit/chainlink-brownie-contracts@0.4.0
-  - OpenZeppelin/openzeppelin-contracts@4.3.2
+    - smartcontractkit/chainlink-brownie-contracts@0.4.0
+    - OpenZeppelin/openzeppelin-contracts@4.3.2
 compiler:
-  solc:
-    remappings:
-      - "@chainlink=smartcontractkit/chainlink-brownie-contracts@0.4.0"
-      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.3.2"
+    solc:
+        remappings:
+            - "@chainlink=smartcontractkit/chainlink-brownie-contracts@0.4.0"
+            - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.3.2"
 # automatically fetch contract sources from Etherscan
 autofetch_sources: True
 # Uncomment to use the .env file
@@ -55,7 +55,8 @@ networks:
         keyhash: "0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311"
         link_token: "0x01be23585060835e02b77ef475b0cc51aa1e0709"
         oracle: "0xc57b33452b4f7bb189bb5afae9cc4aba1f7a4fd8"
-        subscription_id: 1003
+        # Add your sub_id
+        # subscription_id: 1003
         verify: false
         vrf_coordinator: "0x6168499c0cFfCaCD319c818142124B7A15E857ab"
 reports:
