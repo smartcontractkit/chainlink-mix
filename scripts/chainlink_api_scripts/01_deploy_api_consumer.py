@@ -2,8 +2,10 @@
 from brownie import APIConsumer, config, network
 from web3 import Web3
 from scripts.helpful_scripts import (
+    BLOCK_CONFIRMATIONS_FOR_VERIFICATION,
     get_account,
     get_contract,
+    verifiable_contract,
 )
 
 
@@ -20,11 +22,11 @@ def deploy_api_consumer():
         link_token,
         {"from": account},
     )
-    if config["networks"][network.show_active()].get("verify", False):
+
+    if verifiable_contract():
         api_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
         APIConsumer.publish_source(api_consumer)
-    else:
-        api_consumer.tx.wait(1)
+
     print(f"API Consumer deployed to {api_consumer.address}")
     return api_consumer
 

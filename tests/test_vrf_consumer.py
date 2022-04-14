@@ -11,7 +11,6 @@ from scripts.helpful_scripts import (
 from scripts.vrf_scripts.create_subscription import (
     create_subscription,
     fund_subscription,
-    is_funded,
 )
 
 

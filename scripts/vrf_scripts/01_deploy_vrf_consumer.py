@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 from brownie import VRFConsumerV2, config, network
 from scripts.helpful_scripts import (
+    BLOCK_CONFIRMATIONS_FOR_VERIFICATION,
+    LOCAL_BLOCKCHAIN_ENVIRONMENTS,
     get_account,
     get_contract,
-    LOCAL_BLOCKCHAIN_ENVIRONMENTS,
+    verifiable_contract,
 )
 
 
@@ -24,11 +26,11 @@ def depoly_vrf_consumer():
         gas_lane,  # Also known as keyhash
         {"from": account},
     )
-    if config["networks"][network.show_active()].get("verify", False):
+
+    if verifiable_contract():
         vrf_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
         VRFConsumerV2.publish_source(vrf_consumer)
-    else:
-        vrf_consumer.tx.wait(1)
+
     return vrf_consumer
 
 
