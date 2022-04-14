@@ -23,7 +23,7 @@ def deploy_api_consumer():
         {"from": account},
     )
 
-    if is_verifiable_contract:
+    if is_verifiable_contract():
         api_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
         APIConsumer.publish_source(api_consumer)
 
