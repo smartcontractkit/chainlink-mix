@@ -17,8 +17,11 @@ LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
     "binance-fork",
     "matic-fork",
 ]
+
 # Etherscan usually takes a few blocks to register the contract has been deployed
-BLOCK_CONFIRMATIONS_FOR_VERIFICATION = 6
+BLOCK_CONFIRMATIONS_FOR_VERIFICATION = (
+    1 if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS else 6
+)
 
 contract_to_mock = {
     "link_token": LinkToken,
@@ -31,6 +34,10 @@ DECIMALS = 18
 INITIAL_VALUE = web3.toWei(2000, "ether")
 BASE_FEE = 100000000000000000  # The premium
 GAS_PRICE_LINK = 1e9  # Some value calculated depending on the Layer 1 cost and Link
+
+
+def is_verifiable_contract() -> bool:
+    return config["networks"][network.show_active()].get("verify", False)
 
 
 def get_account(index=None, id=None):
