@@ -5,7 +5,7 @@ from scripts.helpful_scripts import (
     LOCAL_BLOCKCHAIN_ENVIRONMENTS,
     get_account,
     get_contract,
-    verifiable_contract,
+    is_verifiable_contract,
 )
 
 
@@ -27,7 +27,7 @@ def depoly_vrf_consumer():
         {"from": account},
     )
 
-    if verifiable_contract():
+    if is_verifiable_contract():
         vrf_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
         VRFConsumerV2.publish_source(vrf_consumer)
 

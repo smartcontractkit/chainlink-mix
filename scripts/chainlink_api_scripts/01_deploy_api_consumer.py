@@ -5,7 +5,7 @@ from scripts.helpful_scripts import (
     BLOCK_CONFIRMATIONS_FOR_VERIFICATION,
     get_account,
     get_contract,
-    verifiable_contract,
+    is_verifiable_contract,
 )
 
 
@@ -23,7 +23,7 @@ def deploy_api_consumer():
         {"from": account},
     )
 
-    if verifiable_contract():
+    if is_verifiable_contract:
         api_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
         APIConsumer.publish_source(api_consumer)
 

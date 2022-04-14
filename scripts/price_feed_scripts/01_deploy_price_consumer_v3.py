@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-from brownie import PriceFeedConsumer, config, network
+from brownie import PriceFeedConsumer
 from scripts.helpful_scripts import (
     BLOCK_CONFIRMATIONS_FOR_VERIFICATION,
     get_account,
     get_contract,
-    verifiable_contract,
+    is_verifiable_contract,
 )
 
 
@@ -16,7 +16,7 @@ def deploy_price_feed_consumer():
         {"from": account},
     )
 
-    if verifiable_contract():
+    if is_verifiable_contract():
         price_feed.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
         PriceFeedConsumer.publish_source(price_feed)
 

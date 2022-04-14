@@ -36,7 +36,7 @@ BASE_FEE = 100000000000000000  # The premium
 GAS_PRICE_LINK = 1e9  # Some value calculated depending on the Layer 1 cost and Link
 
 
-def verifiable_contract() -> bool:
+def is_verifiable_contract() -> bool:
     return config["networks"][network.show_active()].get("verify", False)
 
 
