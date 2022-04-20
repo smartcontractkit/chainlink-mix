@@ -28,6 +28,7 @@ contract_to_mock = {
     "eth_usd_price_feed": MockV3Aggregator,
     "vrf_coordinator": VRFCoordinatorV2Mock,
     "oracle": MockOracle,
+    "multiword_oracle": MockOracle,
 }
 
 DECIMALS = 18

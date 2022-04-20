@@ -31,6 +31,18 @@ def get_job_id():
 
 
 @pytest.fixture
+def get_multiword_job_id():
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        return 0
+    if network.show_active() in config["networks"]:
+        return Web3.toHex(
+            text=config["networks"][network.show_active()]["multiword_jobId"]
+        )
+    else:
+        pytest.skip("Invalid network/link token specified")
+
+
+@pytest.fixture
 def get_data():
     return 100
 
