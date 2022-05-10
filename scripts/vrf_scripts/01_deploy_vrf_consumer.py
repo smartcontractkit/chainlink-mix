@@ -9,7 +9,7 @@ from scripts.helpful_scripts import (
 )
 
 
-def depoly_vrf_consumer():
+def deploy_vrf_consumer():
     account = get_account()
     print(f"On network {network.show_active()}")
     subscription_id = config["networks"][network.show_active()]["subscription_id"]
@@ -52,7 +52,7 @@ def add_vrf_consumer_to_subscription(subscription_id, vrf_consumer):
 
 
 def main():
-    vrf_consumer = depoly_vrf_consumer()
+    vrf_consumer = deploy_vrf_consumer()
     vrf_consumer = VRFConsumerV2[-1]
     if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         add_vrf_consumer_to_subscription(
