@@ -199,7 +199,7 @@ contract VRFCoordinatorV2Mock is VRFCoordinatorV2Interface {
     revert("not implemented");
   }
 
-  function pendingRequestExists(uint64 subId) external view returns (bool) {
+  function pendingRequestExists(uint64 _subId) external view returns (bool) {
     revert("not implemented");
   }
 }
