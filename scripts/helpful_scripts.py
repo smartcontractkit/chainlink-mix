@@ -6,6 +6,7 @@ from brownie import (
     MockV3Aggregator,
     MockOracle,
     VRFCoordinatorV2Mock,
+    MockOperator,
     Contract,
     web3,
 )
@@ -28,7 +29,7 @@ contract_to_mock = {
     "eth_usd_price_feed": MockV3Aggregator,
     "vrf_coordinator": VRFCoordinatorV2Mock,
     "oracle": MockOracle,
-    "multiword_oracle": MockOracle,
+    "operator": MockOperator,
 }
 
 DECIMALS = 18
@@ -126,6 +127,11 @@ def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):
     print("Deploying Mock Oracle...")
     mock_oracle = MockOracle.deploy(link_token.address, {"from": account})
     print(f"Deployed to {mock_oracle.address}")
+
+    print("Deploying Mock Operator...")
+    mock_operator = MockOperator.deploy(link_token.address, account, {"from": account})
+    print(f"Deployed to {mock_operator.address}")
+
     print("Mocks Deployed!")
 
 

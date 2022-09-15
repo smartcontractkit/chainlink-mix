@@ -72,7 +72,7 @@ def test_returns_random_number_local():
 
 def test_returns_random_number_testnet():
     # Arrange
-    if network.show_active() not in ["rinkeby"]:
+    if network.show_active() not in ["goerli"]:
         pytest.skip("Only for testnet testing")
     # Arrange
     account = get_account()

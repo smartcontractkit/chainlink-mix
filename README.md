@@ -1,4 +1,4 @@
-> NOTE: The new default branch is `main`
+> NOTE: With Rinkeby and Kovan being deprecated, the new default is goerli. 
 
 # chainlink-mix
 
@@ -86,7 +86,7 @@ Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](htt
 
 You can get a `WEB3_INFURA_PROJECT_ID` by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura with brownie. If you get lost, you can [follow this guide](https://ethereumico.io/knowledge-base/infura-api-key-guide/) to getting a project key. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/).
 
-You'll also need testnet ETH and LINK. You can get LINK and ETH into your wallet by using the [faucets located here](https://docs.chain.link/docs/link-token-contracts). If you're new to this, [watch this video.](https://www.youtube.com/watch?v=P7FX_1PePX0). Look at the `rinkeby` and `kovan` sections for those specific testnet faucets.
+You'll also need testnet ETH and LINK. You can get LINK and ETH into your wallet by using the [faucets located here](https://faucets.chain.link/). If you're new to this, [watch this video.](https://www.youtube.com/watch?v=P7FX_1PePX0). Look at the `goeli` section for those specific testnet faucets.
 
 You can add your environment variables to a `.env` file. You can use the [.env.exmple](https://github.com/smartcontractkit/chainlink-mix/blob/master/.env.example) as a template, just fill in the values and rename it to '.env'. Then, uncomment the line `# dotenv: .env` in `brownie-config.yaml`
 
@@ -136,17 +136,17 @@ This mix provides a simple template for working with Chainlink Smart Contracts. 
 
 ### Chainlink Price Feeds
 
-This will deploy a smart contract to rinkeby and then read you the latest price via [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price).
+This will deploy a smart contract to goerli and then read you the latest price via [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price).
 
 ```
-brownie run scripts/price_feed_scripts/01_deploy_price_consumer_v3.py --network rinkeby
-brownie run scripts/price_feed_scripts/02_read_price_feed.py --network rinkeby
+brownie run scripts/price_feed_scripts/01_deploy_price_consumer_v3.py --network goerli
+brownie run scripts/price_feed_scripts/02_read_price_feed.py --network goerli
 ```
 
 Or, you can use [ENS](https://docs.chain.link/docs/ens)
 
 ```
-brownie run scripts/price_feed_scripts/02_read_price_feed_with_ens.py --network rinkeby
+brownie run scripts/price_feed_scripts/02_read_price_feed_with_ens.py --network goerli
 ```
 
 Otherwise, you can fork mainnet and use that in a local ganache development environment.
@@ -165,41 +165,39 @@ You can also use [ENS](https://docs.chain.link/docs/ens) to get prices. See the 
 
 ### Chainlink VRF
 
-This will deploy a smart contract to rinkeby and get a Random number via [Chainlink VRF](https://docs.chain.link/docs/get-a-random-number).
+This will deploy a smart contract to goerli and get a Random number via [Chainlink VRF](https://docs.chain.link/docs/get-a-random-number).
 
 If you haven't created and funded a subscription on [vrf.chain.link](https://vrf.chain.link/) you can do so on the UI, or by running:
 
 ```
-brownie run scripts/vrf_scripts/create_subscription.py --network rinkeby
+brownie run scripts/vrf_scripts/create_subscription.py --network goerli
 ```
 
 Before running the next scripts. Running `01_deploy_vrf` will also add your consumer contract to the registry.
 
 ```
-brownie run scripts/vrf_scripts/01_deploy_vrf.py --network rinkeby
-brownie run scripts/vrf_scripts/02_request_randomness.py --network rinkeby
-brownie run scripts/vrf_scripts/03_read_random_number.py --network rinkeby
+brownie run scripts/vrf_scripts/01_deploy_vrf.py --network goerli
+brownie run scripts/vrf_scripts/02_request_randomness.py --network goerli
+brownie run scripts/vrf_scripts/03_read_random_number.py --network goerli
 ```
 
 ### Chainlink API Call
 
-This will deploy a smart contract to rinkeby and then make an API call via [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request).
+This will deploy a smart contract to goerli and then make an API call via [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request).
 
 ```
-brownie run scripts/chainlink_api_scripts/01_deploy_api_consumer.py --network rinkeby
-brownie run scripts/chainlink_api_scripts/02_request_api.py --network rinkeby
-brownie run scripts/chainlink_api_scripts/03_read_data.py --network rinkeby
+brownie run scripts/chainlink_api_scripts/01_deploy_api_consumer.py --network goerli
+brownie run scripts/chainlink_api_scripts/02_request_api.py --network goerli
+brownie run scripts/chainlink_api_scripts/03_read_data.py --network goerli
 ```
 
 ### Chainlink Keeper Deployment
 
 This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documentation.
 
-**Currently, keepers only work with Kovan**
-
 ```
-brownie run scripts/keeper_scripts/01_deploy_keeper_counter.py --network kovan
-brownie run scripts/keeper_scripts/02_check_upkeep.py --network kovan
+brownie run scripts/keeper_scripts/01_deploy_keeper_counter.py --network goerli
+brownie run scripts/keeper_scripts/02_check_upkeep.py --network goerli
 ```
 
 ### Local Development
@@ -234,10 +232,10 @@ brownie test --network mainnet-fork
 
 ### To test a testnet
 
-Kovan and Rinkeby are currently supported. Please check the Chainlink docs for which products are supported on which chains.
+Goerli is currently supported. Please check the Chainlink docs for which products are supported on which chains.
 
 ```bash
-brownie test --network kovan
+brownie test --network goerli
 ```
 
 ## Adding additional Chains
