@@ -7,6 +7,7 @@ def test_can_call_check_upkeep():
     interval = 2
     account = get_account()
     counter = Counter.deploy(interval, {"from": account})
+    counter.tx.wait(1)
     upkeepNeeded, performData = counter.checkUpkeep.call(
         "",
         {"from": account},

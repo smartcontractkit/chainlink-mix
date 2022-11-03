@@ -11,7 +11,6 @@ from scripts.helpful_scripts import (
 from scripts.vrf_scripts.create_subscription import (
     create_subscription,
     fund_subscription,
-    is_funded,
 )
 
 
@@ -73,7 +72,7 @@ def test_returns_random_number_local():
 
 def test_returns_random_number_testnet():
     # Arrange
-    if network.show_active() not in ["rinkeby"]:
+    if network.show_active() not in ["goerli"]:
         pytest.skip("Only for testnet testing")
     # Arrange
     account = get_account()

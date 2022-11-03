@@ -3,6 +3,7 @@ import time
 import pytest
 from brownie import APIConsumer, network, config
 from scripts.helpful_scripts import (
+    BLOCK_CONFIRMATIONS_FOR_VERIFICATION,
     LOCAL_BLOCKCHAIN_ENVIRONMENTS,
     get_account,
     listen_for_event,
@@ -21,10 +22,7 @@ def deploy_api_contract(get_job_id, chainlink_fee):
         get_contract("link_token").address,
         {"from": get_account()},
     )
-    block_confirmations = 6
-    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        block_confirmations = 1
-    api_consumer.tx.wait(block_confirmations)
+    api_consumer.tx.wait(BLOCK_CONFIRMATIONS_FOR_VERIFICATION)
     # Assert
     assert api_consumer is not None
     return api_consumer
@@ -55,7 +53,7 @@ def test_send_api_request_local(
 
 def test_send_api_request_testnet(deploy_api_contract, chainlink_fee):
     # Arrange
-    if network.show_active() not in ["kovan", "rinkeby", "mainnet"]:
+    if network.show_active() not in ["kovan", "rinkeby", "goerli", "mainnet"]:
         pytest.skip("Only for testnet testing")
     api_contract = deploy_api_contract
 

@@ -6,6 +6,7 @@ from brownie import (
     MockV3Aggregator,
     MockOracle,
     VRFCoordinatorV2Mock,
+    MockOperator,
     Contract,
     web3,
 )
@@ -17,20 +18,28 @@ LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
     "binance-fork",
     "matic-fork",
 ]
+
 # Etherscan usually takes a few blocks to register the contract has been deployed
-BLOCK_CONFIRMATIONS_FOR_VERIFICATION = 6
+BLOCK_CONFIRMATIONS_FOR_VERIFICATION = (
+    1 if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS else 6
+)
 
 contract_to_mock = {
     "link_token": LinkToken,
     "eth_usd_price_feed": MockV3Aggregator,
     "vrf_coordinator": VRFCoordinatorV2Mock,
     "oracle": MockOracle,
+    "operator": MockOperator,
 }
 
 DECIMALS = 18
 INITIAL_VALUE = web3.toWei(2000, "ether")
 BASE_FEE = 100000000000000000  # The premium
 GAS_PRICE_LINK = 1e9  # Some value calculated depending on the Layer 1 cost and Link
+
+
+def is_verifiable_contract() -> bool:
+    return config["networks"][network.show_active()].get("verify", False)
 
 
 def get_account(index=None, id=None):
@@ -118,6 +127,11 @@ def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):
     print("Deploying Mock Oracle...")
     mock_oracle = MockOracle.deploy(link_token.address, {"from": account})
     print(f"Deployed to {mock_oracle.address}")
+
+    print("Deploying Mock Operator...")
+    mock_operator = MockOperator.deploy(link_token.address, account, {"from": account})
+    print(f"Deployed to {mock_operator.address}")
+
     print("Mocks Deployed!")
 
 

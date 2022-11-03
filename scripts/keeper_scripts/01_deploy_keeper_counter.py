@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from scripts.helpful_scripts import get_account
+from scripts.helpful_scripts import get_account, is_verifiable_contract
 from brownie import Counter, config, network
 
 
@@ -8,7 +8,7 @@ def deploy_keeper_counter():
     return Counter.deploy(
         config["networks"][network.show_active()]["update_interval"],
         {"from": account},
-        publish_source=config["networks"][network.show_active()].get("verify", False),
+        publish_source=is_verifiable_contract(),
     )
 
 
