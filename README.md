@@ -28,7 +28,7 @@ You can also check out the more advanced Chainlink tutorials there as well.
     - [Chainlink Price Feeds](#chainlink-price-feeds)
     - [Chainlink VRF](#chainlink-vrf)
     - [Chainlink API Call](#chainlink-api-call)
-    - [Chainlink Keeper Deployment](#chainlink-keeper-deployment)
+    - [Chainlink Automation Deployment](#chainlink-automation-deployment)
     - [Local Development](#local-development-1)
   - [Testing](#testing)
     - [To test development / local](#to-test-development--local)
@@ -197,13 +197,13 @@ brownie run scripts/chainlink_api_scripts/02_request_api.py --network sepolia
 brownie run scripts/chainlink_api_scripts/03_read_data.py --network sepolia
 ```
 
-### Chainlink Keeper Deployment
+### Chainlink Automation Deployment
 
-This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documentation.
+This is just to show you how to deploy the Automation Compatible contracts, you can learn more about registering & using them in the [Automate Contracts](https://docs.chain.link/chainlink-automation/compatible-contracts/) section of the Chainlink documentation.
 
 ```
-brownie run scripts/keeper_scripts/01_deploy_keeper_counter.py --network sepolia
-brownie run scripts/keeper_scripts/02_check_upkeep.py --network sepolia
+brownie run scripts/automation_scripts/01_deploy_automation_counter.py --network sepolia
+brownie run scripts/automation_scripts/02_check_upkeep.py --network sepolia
 ```
 
 ### Local Development
