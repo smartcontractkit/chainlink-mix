@@ -53,7 +53,7 @@ def test_send_api_request_local(
 
 def test_send_api_request_testnet(deploy_api_contract, chainlink_fee):
     # Arrange
-    if network.show_active() not in ["kovan", "rinkeby", "goerli", "mainnet"]:
+    if network.show_active() not in ["sepolia", "mainnet"]:
         pytest.skip("Only for testnet testing")
     api_contract = deploy_api_contract
 
