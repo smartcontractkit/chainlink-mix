@@ -1,4 +1,4 @@
-> NOTE: With Rinkeby and Kovan being deprecated, the new default is goerli. 
+> NOTE: The new default is Sepolia.
 
 # chainlink-mix
 
@@ -28,7 +28,7 @@ You can also check out the more advanced Chainlink tutorials there as well.
     - [Chainlink Price Feeds](#chainlink-price-feeds)
     - [Chainlink VRF](#chainlink-vrf)
     - [Chainlink API Call](#chainlink-api-call)
-    - [Chainlink Keeper Deployment](#chainlink-keeper-deployment)
+    - [Chainlink Automation Deployment](#chainlink-automation-deployment)
     - [Local Development](#local-development-1)
   - [Testing](#testing)
     - [To test development / local](#to-test-development--local)
@@ -43,8 +43,8 @@ You can also check out the more advanced Chainlink tutorials there as well.
 
 Please install or have installed the following:
 
--   [nodejs and npm](https://nodejs.org/en/download/)
--   [python](https://www.python.org/downloads/)
+- [nodejs and npm](https://nodejs.org/en/download/)
+- [python](https://www.python.org/downloads/)
 
 ## Installation
 
@@ -86,7 +86,7 @@ Set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](htt
 
 You can get a `WEB3_INFURA_PROJECT_ID` by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be infura with brownie. If you get lost, you can [follow this guide](https://ethereumico.io/knowledge-base/infura-api-key-guide/) to getting a project key. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/).
 
-You'll also need testnet ETH and LINK. You can get LINK and ETH into your wallet by using the [faucets located here](https://faucets.chain.link/). If you're new to this, [watch this video.](https://www.youtube.com/watch?v=P7FX_1PePX0). Look at the `goeli` section for those specific testnet faucets.
+You'll also need testnet ETH and LINK. You can get LINK and ETH into your wallet by using the [faucets located here](https://faucets.chain.link/). If you're new to this, [watch this video.](https://www.youtube.com/watch?v=P7FX_1PePX0). Look at the `sepolia` section for those specific testnet faucets.
 
 You can add your environment variables to a `.env` file. You can use the [.env.exmple](https://github.com/smartcontractkit/chainlink-mix/blob/master/.env.example) as a template, just fill in the values and rename it to '.env'. Then, uncomment the line `# dotenv: .env` in `brownie-config.yaml`
 
@@ -134,19 +134,25 @@ This mix provides a simple template for working with Chainlink Smart Contracts. 
 
 > NOTE: It's highly encouraged that you work with a local chain before testing on a testnet. You'll be a much faster developer!
 
-### Chainlink Price Feeds
-
-This will deploy a smart contract to goerli and then read you the latest price via [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price).
+If Sepolia network is not added to brownie by default, run:
 
 ```
-brownie run scripts/price_feed_scripts/01_deploy_price_consumer_v3.py --network goerli
-brownie run scripts/price_feed_scripts/02_read_price_feed.py --network goerli
+brownie networks add Ethereum sepolia host=https://sepolia.infura.io/v3/$WEB3_INFURA_PROJECT_ID chainid=11155111 explorer=https://sepolia.etherscan.io/
+```
+
+### Chainlink Price Feeds
+
+This will deploy a smart contract to Sepolia and then read you the latest price via [Chainlink Price Feeds](https://docs.chain.link/docs/get-the-latest-price).
+
+```
+brownie run scripts/price_feed_scripts/01_deploy_price_consumer_v3.py --network sepolia
+brownie run scripts/price_feed_scripts/02_read_price_feed.py --network sepolia
 ```
 
 Or, you can use [ENS](https://docs.chain.link/docs/ens)
 
 ```
-brownie run scripts/price_feed_scripts/02_read_price_feed_with_ens.py --network goerli
+brownie run scripts/price_feed_scripts/02_read_price_feed_with_ens.py --network sepolia
 ```
 
 Otherwise, you can fork mainnet and use that in a local ganache development environment.
@@ -165,39 +171,39 @@ You can also use [ENS](https://docs.chain.link/docs/ens) to get prices. See the 
 
 ### Chainlink VRF
 
-This will deploy a smart contract to goerli and get a Random number via [Chainlink VRF](https://docs.chain.link/docs/get-a-random-number).
+This will deploy a smart contract to Sepolia and get a Random number via [Chainlink VRF](https://docs.chain.link/docs/get-a-random-number).
 
 If you haven't created and funded a subscription on [vrf.chain.link](https://vrf.chain.link/) you can do so on the UI, or by running:
 
 ```
-brownie run scripts/vrf_scripts/create_subscription.py --network goerli
+brownie run scripts/vrf_scripts/create_subscription.py --network sepolia
 ```
 
 Before running the next scripts. Running `01_deploy_vrf` will also add your consumer contract to the registry.
 
 ```
-brownie run scripts/vrf_scripts/01_deploy_vrf.py --network goerli
-brownie run scripts/vrf_scripts/02_request_randomness.py --network goerli
-brownie run scripts/vrf_scripts/03_read_random_number.py --network goerli
+brownie run scripts/vrf_scripts/01_deploy_vrf_consumer.py --network sepolia
+brownie run scripts/vrf_scripts/02_request_randomness.py --network sepolia
+brownie run scripts/vrf_scripts/03_read_random_number.py --network sepolia
 ```
 
 ### Chainlink API Call
 
-This will deploy a smart contract to goerli and then make an API call via [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request).
+This will deploy a smart contract to Sepolia and then make an API call via [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request).
 
 ```
-brownie run scripts/chainlink_api_scripts/01_deploy_api_consumer.py --network goerli
-brownie run scripts/chainlink_api_scripts/02_request_api.py --network goerli
-brownie run scripts/chainlink_api_scripts/03_read_data.py --network goerli
+brownie run scripts/chainlink_api_scripts/01_deploy_api_consumer.py --network sepolia
+brownie run scripts/chainlink_api_scripts/02_request_api.py --network sepolia
+brownie run scripts/chainlink_api_scripts/03_read_data.py --network sepolia
 ```
 
-### Chainlink Keeper Deployment
+### Chainlink Automation Deployment
 
-This is just to show you how to deploy the Keepers, you can learn more about registering them in the [Chainlink Keeper](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/) documentation.
+This is just to show you how to deploy the Automation Compatible contracts, you can learn more about registering & using them in the [Automate Contracts](https://docs.chain.link/chainlink-automation/compatible-contracts/) section of the Chainlink documentation.
 
 ```
-brownie run scripts/keeper_scripts/01_deploy_keeper_counter.py --network goerli
-brownie run scripts/keeper_scripts/02_check_upkeep.py --network goerli
+brownie run scripts/automation_scripts/01_deploy_automation_counter.py --network sepolia
+brownie run scripts/automation_scripts/02_check_upkeep.py --network sepolia
 ```
 
 ### Local Development
@@ -232,10 +238,10 @@ brownie test --network mainnet-fork
 
 ### To test a testnet
 
-Goerli is currently supported. Please check the Chainlink docs for which products are supported on which chains.
+Sepolia is currently supported. Please check the Chainlink docs for which products are supported on which chains.
 
 ```bash
-brownie test --network goerli
+brownie test --network sepolia
 ```
 
 ## Adding additional Chains
@@ -265,10 +271,10 @@ If you're using [vscode](https://code.visualstudio.com/) and the [solidity exten
 
 ```json
 {
-    "solidity.remappings": [
-        "@chainlink/=[YOUR_HOME_DIR]/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2",
-        "@openzeppelin/=[YOUR_HOME_DIR]/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2"
-    ]
+  "solidity.remappings": [
+    "@chainlink/=[YOUR_HOME_DIR]/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2",
+    "@openzeppelin/=[YOUR_HOME_DIR]/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.3.2"
+  ]
 }
 ```
 
@@ -278,11 +284,11 @@ This will quiet the linting errors it gives you.
 
 To get started with Brownie:
 
--   [Chainlink Documentation](https://docs.chain.link/docs)
--   Check out the [Chainlink documentation](https://docs.chain.link/docs) to get started from any level of smart contract engineering.
--   Check out the other [Brownie mixes](https://github.com/brownie-mix/) that can be used as a starting point for your own contracts. They also provide example code to help you get started.
--   ["Getting Started with Brownie"](https://medium.com/@iamdefinitelyahuman/getting-started-with-brownie-part-1-9b2181f4cb99) is a good tutorial to help you familiarize yourself with Brownie.
--   For more in-depth information, read the [Brownie documentation](https://eth-brownie.readthedocs.io/en/stable/).
+- [Chainlink Documentation](https://docs.chain.link/docs)
+- Check out the [Chainlink documentation](https://docs.chain.link/docs) to get started from any level of smart contract engineering.
+- Check out the other [Brownie mixes](https://github.com/brownie-mix/) that can be used as a starting point for your own contracts. They also provide example code to help you get started.
+- ["Getting Started with Brownie"](https://medium.com/@iamdefinitelyahuman/getting-started-with-brownie-part-1-9b2181f4cb99) is a good tutorial to help you familiarize yourself with Brownie.
+- For more in-depth information, read the [Brownie documentation](https://eth-brownie.readthedocs.io/en/stable/).
 
 Any questions? Join our [Discord](https://discord.gg/2YHSAey)
 

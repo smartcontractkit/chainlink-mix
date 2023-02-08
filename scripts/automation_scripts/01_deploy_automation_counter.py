@@ -3,7 +3,7 @@ from scripts.helpful_scripts import get_account, is_verifiable_contract
 from brownie import Counter, config, network
 
 
-def deploy_keeper_counter():
+def deploy_automation_counter():
     account = get_account()
     return Counter.deploy(
         config["networks"][network.show_active()]["update_interval"],
@@ -13,4 +13,4 @@ def deploy_keeper_counter():
 
 
 def main():
-    deploy_keeper_counter()
+    deploy_automation_counter()
