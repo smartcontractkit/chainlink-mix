@@ -1,0 +1,40 @@
+# Uncomment to work with me!
+
+# on: ['push', 'pull_request']
+
+# name: main workflow
+
+# env:
+#   NODE_OPTIONS: --max_old_space_size=4096
+
+# jobs:
+#   tests:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: Cache Compiler Installations
+#         uses: actions/cache@v2
+#         with:
+#           path: |
+#             ~/.solcx
+#             ~/.vvm
+#           key: compiler-cache
+
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v1
+
+#       - name: Install Ganache
+#         run: npm install -g ganache-cli@6.10.2
+
+#       - name: Setup Python 3.8
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.8
+
+#       - name: Install Requirements
+#         run: pip install -r requirements.txt
+
+#       - name: Run Tests
+#         run: brownie test
