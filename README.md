@@ -1,5 +1,5 @@
 > ⚠️⚠️⚠️
-> This repo uses the eth-brownie development toolkit which is n[o longer maintained by its creators](https://github.com/eth-brownie/brownie?tab=readme-ov-file#brownie).
+> This repo uses the eth-brownie development toolkit which is [no longer maintained by its creators](https://github.com/eth-brownie/brownie?tab=readme-ov-file#brownie).
 > Therefore this repo is not maintained actively either.
 > we recommend you check out the [Chainlink starter kits](https://github.com/smartcontractkit/starter-kits) to find other repos that you can use to
 > get started quickly. We recommend the use of the Hardhat or Foundry starter kits for most use cases.
