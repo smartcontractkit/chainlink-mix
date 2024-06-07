@@ -66,7 +66,7 @@ def get_contract(contract_name):
 
         Returns:
             brownie.network.contract.ProjectContract: The most recently deployed
-            Contract of the type specificed by the dictionary. This could be either
+            Contract of the type specified by the dictionary. This could be either
             a mock or the 'real' contract on a live network.
     """
     contract_type = contract_to_mock[contract_name]

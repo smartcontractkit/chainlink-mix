@@ -93,7 +93,7 @@ You can get a `WEB3_INFURA_PROJECT_ID` by getting a free trial of [Infura](https
 
 You'll also need testnet ETH and LINK. You can get LINK and ETH into your wallet by using the [faucets located here](https://faucets.chain.link/). If you're new to this, [watch this video.](https://www.youtube.com/watch?v=P7FX_1PePX0). Look at the `sepolia` section for those specific testnet faucets.
 
-You can add your environment variables to a `.env` file. You can use the [.env.exmple](https://github.com/smartcontractkit/chainlink-mix/blob/master/.env.example) as a template, just fill in the values and rename it to '.env'. Then, uncomment the line `# dotenv: .env` in `brownie-config.yaml`
+You can add your environment variables to a `.env` file. You can use the [.env.example](https://github.com/smartcontractkit/chainlink-mix/blob/master/.env.example) as a template, just fill in the values and rename it to '.env'. Then, uncomment the line `# dotenv: .env` in `brownie-config.yaml`
 
 Here is what your `.env` should look like:
 
